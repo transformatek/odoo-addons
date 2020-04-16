@@ -6,19 +6,36 @@
 from odoo import api, exceptions, fields, models
 
 
+class ProjectProject(models.Model):
+    _inherit = 'project.project'
+
+    scrum_team_id = fields.Many2one('project.scrum.team', 'Scrum Team')
+
+
 class ProjectScrumTeam(models.Model):
     _name = 'project.scrum.team'
 
     name = fields.Char(string='Name', required=True)
-    # sprint_ids = fields.One2many('project.sprint', 'scrum_team_id', 'Sprints')
-    # project_ids = fields.One2many('project.project', 'scrum_team_id',
-    #                               'Projects')
+    sprint_ids = fields.One2many('project.sprint', 'scrum_team_id', 'Sprints')
+    project_ids = fields.One2many('project.project', 'scrum_team_id',
+                                  'Projects')
 
 
-# class ProjectProject(models.Model):
-#     _inherit = 'project.project'
+class ProjectTask(models.Model):
+    _inherit = 'project.task'
 
-    # scrum_team_id = fields.Many2one('project.scrum.team', 'Scrum Team')
+    sprint_id = fields.Many2one('project.sprint', 'Sprint', required=True,
+                                track_visibility='onchange')
+
+    #@api.multi
+    def go_to_sprint_action(self):
+        self.ensure_one()
+        return self.sprint_id.view_tasks_action()
+
+    #@api.multi
+    def assign_to_me(self):
+        self.ensure_one()
+        self.user_id = self._uid
 
 
 class ProjectSprint(models.Model):
@@ -27,115 +44,99 @@ class ProjectSprint(models.Model):
     _order = 'start_date DESC'
 
     name = fields.Char(string='Name', required=True)
-    # display_name = fields.Char(string='Display Name', compute='_compute_display_name',
-    #                            store=True)
     start_date = fields.Date(string='Start Date', required=True)
     end_date = fields.Date(string='End Date', required=True)
-    # scrum_team_id = fields.Many2one('project.scrum.team', 'Scrum Team',
-    #                                 required=True)
-    # task_count = fields.Integer(string='# Tasks', compute='_task_count')
+    scrum_team_id = fields.Many2one('project.scrum.team', 'Scrum Team',
+                                    required=True)
+    task_count = fields.Integer(string='# Tasks', compute='_task_count')
 
     is_current_sprint = fields.Boolean(string='Is Current Sprint')
     is_previous_sprint = fields.Boolean(string='Is Previous Sprint')
+    display_name = fields.Char(string='Display Name', 
+                                compute='_compute_display_name', store=True)
+
+
+    @api.depends('name', 'start_date', 'end_date')
+    def _compute_display_name(self):
+        for sprint in self:
+            sprint.display_name = '%s' % (sprint.name)
+            # sprint.display_name = '%s - %s/%s' % (sprint.name, 
+                                                #   sprint.end_date[8:10],
+                                                #   sprint.end_date[5:7])
+
+    # @api.multi
+    def _task_count(self):
+        ProjectTask = self.env['project.task']
+        for sprint in self:
+            tasks = ProjectTask.search([('sprint_id', '=', sprint.id)])
+            sprint.task_count = len(tasks)
 
     #@api.multi
-    # def _task_count(self):
-    #     ProjectTask = self.env['project.task']
-    #     for sprint in self:
-    #         tasks = ProjectTask.search([('sprint_id', '=', sprint.id)])
-    #         sprint.task_count = len(tasks)
+    @api.constrains('is_current_sprint')
+    def check_current_sprint(self):
+        self.ensure_one()
+        self.check_is_not_both_previous_and_current()
+        if self.is_current_sprint:
+            old_previous = self.search([('is_previous_sprint', '=', True)])
+            if old_previous:
+                old_previous.is_previous_sprint = False
+            old_current = self.search([('is_current_sprint', '=', True),
+                         ('id', '!=', self.id)])
+            if old_current:
+                old_current.is_current_sprint = False
+                old_current.is_previous_sprint = True
 
-    # #@api.multi
-    # @api.constrains('is_current_sprint')
-    # def check_current_sprint(self):
-    #     self.ensure_one()
-    #     self.check_is_not_both_previous_and_current()
-    #     if self.is_current_sprint:
-    #         old_previous = self.search([('is_previous_sprint', '=', True)])
-    #         if old_previous:
-    #             old_previous.is_previous_sprint = False
-    #         old_current = self.search([('is_current_sprint', '=', True),
-    #                      ('id', '!=', self.id)])
-    #         if old_current:
-    #             old_current.is_current_sprint = False
-    #             old_current.is_previous_sprint = True
+    # @api.multi
+    @api.constrains('is_previous_sprint')
+    def check_previous_sprint(self):
+        self.ensure_one()
+        self.check_is_not_both_previous_and_current()
+        if len(self.search([('is_previous_sprint', '=', True)])) > 1:
+            raise exceptions.ValidationError('A single previous sprint is '
+                                             'permitted')
 
-    #@api.multi
-    # @api.constrains('is_previous_sprint')
-    # def check_previous_sprint(self):
-    #     self.ensure_one()
-    #     self.check_is_not_both_previous_and_current()
-    #     if len(self.search([('is_previous_sprint', '=', True)])) > 1:
-    #         raise exceptions.ValidationError('A single previous sprint is '
-    #                                          'permitted')
+    # @api.multi
+    def check_is_not_both_previous_and_current(self):
+        self.ensure_one()
+        if self.is_current_sprint and self.is_previous_sprint:
+            raise exceptions.ValidationError('A sprint cannot be previous'
+                                             ' and current at the same time')
 
-    #@api.multi
-    # def check_is_not_both_previous_and_current(self):
-    #     self.ensure_one()
-    #     if self.is_current_sprint and self.is_previous_sprint:
-    #         raise exceptions.ValidationError('A sprint cannot be previous'
-    #                                          ' and current at the same time')
+    # @api.multi
+    @api.constrains('start_date', 'end_date')
+    def check_dates(self):
+        for sprint in self:
+            concurrent_sprints = self.search([
+                '&',
+                    '|',
+                        '|',
+                            '&',
+                                ('start_date', '<=', sprint.end_date),
+                                ('start_date', '>=', sprint.start_date),
+                            '&',
+                                ('end_date', '<=', sprint.end_date),
+                                ('end_date', '>=', sprint.start_date),
+                        '&',
+                            ('start_date', '<=', sprint.start_date),
+                            ('end_date', '>=', sprint.end_date),
+                    '&',
+                        ('id', '!=', sprint.id),
+                        ('scrum_team_id', '=', sprint.scrum_team_id.id)
+            ])
+            if concurrent_sprints:
+                raise exceptions.ValidationError('Sprints cannot overlap')
 
-    #@api.multi
-    # @api.constrains('start_date', 'end_date')
-    # def check_dates(self):
-    #     for sprint in self:
-    #         concurrent_sprints = self.search([
-    #             '&',
-    #                 '|',
-    #                     '|',
-    #                         '&',
-    #                             ('start_date', '<=', sprint.end_date),
-    #                             ('start_date', '>=', sprint.start_date),
-    #                         '&',
-    #                             ('end_date', '<=', sprint.end_date),
-    #                             ('end_date', '>=', sprint.start_date),
-    #                     '&',
-    #                         ('start_date', '<=', sprint.start_date),
-    #                         ('end_date', '>=', sprint.end_date),
-    #                 '&',
-    #                     ('id', '!=', sprint.id),
-    #                     ('scrum_team_id', '=', sprint.scrum_team_id.id)
-    #         ])
-    #         if concurrent_sprints:
-    #             raise exceptions.ValidationError('Sprints cannot overlap')
-
-    #@api.multi
-    # def view_tasks_action(self):
-    #     self.ensure_one()
-    #     return {
-    #         'type': 'ir.actions.act_window',
-    #         'res_model': 'project.task',
-    #         'view_type': 'form',
-    #         'view_mode': 'tree,form',
-    #         'target': 'current',
-    #         'name': self.name,
-    #         'display_name': self.display_name,
-    #         'domain': [('sprint_id', '=', self.id)],
-    #         'context': {'default_sprint_id': self.id},
-    #     }
-
-    # #@api.multi
-    # @api.depends('name', 'start_date', 'end_date')
-    # def _compute_display_name(self):
-    #     for sprint in self:
-    #         sprint.display_name = '%s - %s/%s' % (sprint.name,
-    #                                               sprint.end_date[8:10],
-    #                                               sprint.end_date[5:7])
-
-
-# class ProjectTask(models.Model):
-#     _inherit = 'project.task'
-
-#     sprint_id = fields.Many2one('project.sprint', 'Sprint', required=True,
-#                                 track_visibility='onchange')
-
-#     #@api.multi
-#     def go_to_sprint_action(self):
-#         self.ensure_one()
-#         return self.sprint_id.view_tasks_action()
-
-#     #@api.multi
-#     def assign_to_me(self):
-#         self.ensure_one()
-#         self.user_id = self._uid
+    # @api.multi
+    def view_tasks_action(self):
+        self.ensure_one()
+        return {
+            'type': 'ir.actions.act_window',
+            'res_model': 'project.task',
+            'view_type': 'form',
+            'view_mode': 'tree,form',
+            'target': 'current',
+            'name': self.name,
+            'display_name': self.display_name,
+            'domain': [('sprint_id', '=', self.id)],
+            'context': {'default_sprint_id': self.id},
+        }

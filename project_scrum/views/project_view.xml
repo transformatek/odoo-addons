@@ -9,14 +9,14 @@
                     <sheet>
                         <group>
                             <field name="name"/>
-                            <!-- <field name="sprint_ids" widget="many2many"/>
-                            <field name="project_ids" widget="many2many"/> -->
+                            <field name="sprint_ids" widget="many2many"/>
+                            <field name="project_ids" widget="many2many"/>
                         </group>
                     </sheet>
                 </form>
             </field>
         </record>
-<!-- 
+
         <record id="project_scrum_team_tree" model="ir.ui.view">
             <field name="name">project_scrum_team_tree</field>
             <field name="model">project.scrum.team</field>
@@ -26,7 +26,6 @@
                 </tree>
             </field>
         </record>
--->
 
         <record id="project_sprint_form" model="ir.ui.view">
             <field name="name">project_sprint_form</field>
@@ -34,7 +33,7 @@
             <field name="arch" type="xml">
                 <form>
                     <sheet>
-                        <!-- <div class="oe_button_box" name="button_box">
+                        <div class="oe_button_box" name="button_box">
                             <button name="view_tasks_action" type="object"
                                     class="oe_stat_button" icon="fa-eye">
                                 <field name="task_count" string="View Tasks" widget="statinfo"/>
@@ -42,7 +41,7 @@
                         </div>
                         <group>
                             <field name="name"/>
-                        </group> -->
+                        </group> 
                         <group>
                             <group>
                                 <field name="start_date"/>
@@ -52,13 +51,13 @@
                                 <field name="is_previous_sprint"/>
                                 <field name="is_current_sprint"/>
                             </group>
-                            <!-- <field name="scrum_team_id"/> -->
+                            <field name="scrum_team_id"/>
                         </group>
                     </sheet>
                 </form>
             </field>
         </record>
-<!--
+
         <record id="view_task_form2" model="ir.ui.view">
             <field name="name">view_task_form2</field>
             <field name="model">project.task</field>
@@ -67,7 +66,7 @@
                 <xpath expr="//field[@name='date_deadline']" position="after">
                     <field name="sprint_id"/>
                 </xpath>
-                <xpath expr="//div[@name='button_box']/button[@name='toggle_active']" position="before">
+                <xpath expr="//div[@name='button_box']" position="inside">
                     <button name="assign_to_me" type="object" class="oe_stat_button" icon="fa-share-square-o" string="Assign To Me"/>
                 </xpath>
             </field>
@@ -107,7 +106,7 @@
                 <xpath expr="//field[@name='legend_done']" position="after">
                     <field name="sprint_id"/>
                 </xpath>
-                <xpath expr="//div[@class='oe_kanban_bottom_right']/img" position="before">
+                <xpath expr="//div[@class='oe_kanban_bottom_right']/field[@name='kanban_state']" position="before">
                     <t t-if="record.sprint_id.raw_value">
                         <button class="pull-left btn btn-info btn-xs" type="object" name="go_to_sprint_action" style="margin-right: 5px;"><field name="sprint_id"/></button>
                     </t>
@@ -115,17 +114,16 @@
             </field>
         </record>
 
-        <act_window id="project_sprint_action"
-                    name="Sprints"
-                    groups="project.group_project_manager"
-                    res_model="project.sprint"
-                    view_mode="tree,form"
-                    context="{}"
-                    view_type="form"/>
+        <record model="ir.actions.act_window" id="project_sprint_action">
+            <field name="name">Scrum Teams</field>
+            <!-- <field name="groups">project.group_project_manager</field> -->
+            <field name="res_model">project.sprint</field>
+            <field name="view_mode">tree,form</field>
+        </record>                    
 
         <menuitem name="Sprints" id="project_sprint_menuitem"
-                  parent="project.menu_project_management" sequence="5" action="project_sprint_action"/>
--->
+                  parent="project.menu_project_config" sequence="10" action="project_sprint_action"/>
+
 
         <record model="ir.actions.act_window" id="project_scrum_team_action">
             <field name="name">Scrum Teams</field>
@@ -135,6 +133,6 @@
 
         
         <menuitem name="Scrum Teams" id="project_scrum_team_menuitem"
-                  parent="project.menu_project_config" sequence="7" action="project_scrum_team_action"/> 
+                  parent="project.menu_project_config" sequence="11" action="project_scrum_team_action"/> 
 
 </odoo>
