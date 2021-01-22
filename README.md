@@ -1,2 +1,2 @@
 # odoo-addons
-Odoo addons developped by enlight.me team
+Odoo addons developped by TransformaTek team

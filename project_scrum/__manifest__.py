@@ -2,13 +2,13 @@
 # © 2016 Pierre Faniel
 # © 2016 Niboo SPRL (<https://www.niboo.be/>)
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
-# Enlight.me 2020 (<https://enlightme.biz/>)
+# TransformaTek.dz 2021 (<https://transformatek.dz/>)
 
 {
     'name': 'Project - Scrum',
     'category': "Project",
     'summary': 'Adds the ability to create Sprints and Scrum teams.',
-    'website': 'https://enlightme.biz/',
+    'website': 'https://transformatek.dz/',
     'version': '13.0.0.0.0',
     'license': 'AGPL-3',
     'description': """
@@ -31,16 +31,16 @@ Focus on your business, we keep IT running
 
 ----------------------
 
-About Enlight.me
+About TransformaTek
 ===============
 
-Enlight.me We are a startup working toward the large adoption of location intelligence technologies by small businesses.
+TransformaTek We are a startup working toward the large adoption of location intelligence technologies by small businesses.
 
 Our mission is to develop community driven  platforms to democratize access to open geospatial datasets and build useful use cases for Business
 
 Our values : Openness, Use case driven, Community empowerement.
 
-https://enlightme.biz
+https://transformatek.dz
 
 ----------------------
 
