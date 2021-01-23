@@ -3,14 +3,16 @@
 from odoo import api, fields, models, _
 
 to_19_fr = (u'Zéro', 'Un', 'Deux', 'Trois', 'Quatre', 'Cinq', 'Six',
-          'Sept', 'Huit', 'Neuf', 'Dix', 'Onze', 'Douze', 'Treize',
-          'Quatorze', 'Quinze', 'Seize', 'Dix-sept', 'Dix-huit', 'Dix-neuf')
-tens_fr = ('Vingt', 'Trente', 'Quarante', 'Cinquante', 'Soixante', 'Soixante-dix', 'Quatre-vingts', 'Quatre-vingt Dix')
+            'Sept', 'Huit', 'Neuf', 'Dix', 'Onze', 'Douze', 'Treize',
+            'Quatorze', 'Quinze', 'Seize', 'Dix-sept', 'Dix-huit', 'Dix-neuf')
+tens_fr = ('Vingt', 'Trente', 'Quarante', 'Cinquante', 'Soixante',
+           'Soixante-dix', 'Quatre-vingts', 'Quatre-vingt Dix')
 denom_fr = ('',
-          'Mille', 'Millions', 'Milliards', 'Billions', 'Quadrillions',
-          'Quintillion', 'Sextillion', 'Septillion', 'Octillion', 'Nonillion',
-          'Décillion', 'Undecillion', 'Duodecillion', 'Tredecillion', 'Quattuordecillion',
-          'Sexdecillion', 'Septendecillion', 'Octodecillion', 'Icosillion', 'Vigintillion')
+            'Mille', 'Millions', 'Milliards', 'Billions', 'Quadrillions',
+            'Quintillion', 'Sextillion', 'Septillion', 'Octillion', 'Nonillion',
+            'Décillion', 'Undecillion', 'Duodecillion', 'Tredecillion', 'Quattuordecillion',
+            'Sexdecillion', 'Septendecillion', 'Octodecillion', 'Icosillion', 'Vigintillion')
+
 
 def _convert_nn_fr(val):
     """ convert a value < 100 to French
@@ -25,6 +27,7 @@ def _convert_nn_fr(val):
                 else:
                     return dcap + '-' + to_19_fr[val % 10]
             return dcap
+
 
 def _convert_nnn_fr(val):
     """ convert a value < 1000 to french
@@ -46,6 +49,7 @@ def _convert_nnn_fr(val):
         word += _convert_nn_fr(mod)
     return word
 
+
 def french_number(val):
     if val < 100:
         return _convert_nn_fr(val)
@@ -63,6 +67,7 @@ def french_number(val):
             if r > 0:
                 ret = ret + ', ' + french_number(r)
             return ret
+
 
 def amount_to_text_fr(numbers, currency):
     number = '%.2f' % numbers
@@ -82,8 +87,9 @@ class PurchaseOrder(models.Model):
     # @api.one
     @api.depends('amount_total')
     def _amount_in_words(self):
-        self.amount_to_text = amount_to_text_fr(self.amount_total, self.currency_id.symbol)
-    
-    
+        for record in self:
+            record.amount_to_text = amount_to_text_fr(
+                record.amount_total, record.currency_id.symbol)
+
     amount_to_text = fields.Text(string='In Words',
-        store=True, readonly=True, compute='_amount_in_words')
+                                 store=True, readonly=True, compute='_amount_in_words')
