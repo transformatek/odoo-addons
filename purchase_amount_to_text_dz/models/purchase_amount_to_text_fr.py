@@ -23,7 +23,7 @@ def _convert_nn_fr(val):
         if dval + 10 > val:
             if val % 10:
                 if dval == 70 or dval == 90:
-                    return tens_fr[dval / 10 - 3] + '-' + to_19_fr[val % 10 + 10]
+                    return tens_fr[int(dval / 10 - 3)] + '-' + to_19_fr[val % 10 + 10]
                 else:
                     return dcap + '-' + to_19_fr[val % 10]
             return dcap
@@ -84,12 +84,12 @@ def amount_to_text_fr(numbers, currency):
 class PurchaseOrder(models.Model):
     _inherit = "purchase.order"
 
+    amount_to_text = fields.Text(string='In Words',
+                                 store=True, readonly=True, compute='_amount_in_words')
+
     # @api.one
     @api.depends('amount_total')
     def _amount_in_words(self):
         for record in self:
             record.amount_to_text = amount_to_text_fr(
                 record.amount_total, record.currency_id.symbol)
-
-    amount_to_text = fields.Text(string='In Words',
-                                 store=True, readonly=True, compute='_amount_in_words')
