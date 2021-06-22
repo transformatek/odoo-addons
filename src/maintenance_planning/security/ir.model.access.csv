@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_maintenance_planning_required_material,maintenance_planning.required_material,model_maintenance_planning_required_material,,1,1,1,1
+access_maintenance_planning_operation,maintenance_planning.operation,model_maintenance_planning_operation,,1,1,1,1
