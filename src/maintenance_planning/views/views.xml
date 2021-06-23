@@ -121,7 +121,7 @@
       </field>
     </record>
 
-    <!-- maintenace.planning : actions -->
+    <!-- maintenace.operations : actions -->
     <record id="maintenance_planning_operation_action" model="ir.actions.act_window">
       <field name="name">Maintenance operations</field>
       <field name="res_model">maintenance_planning.operation</field>
@@ -139,5 +139,20 @@
               action="maintenance_planning_operation_action" 
               sequence="3" />
 
+    <!-- maintenace.plan.requests : actions -->
+    <record id="maintenance_planning_plan_requests_action" model="ir.actions.act_window">
+      <field name="name">maintenace.planing.plan.requests.action</field>
+      <field name="res_model">maintenance_planning.plan.requests.wizard</field>
+      <field name="type">ir.actions.act_window</field>
+      <field name="view_mode">form</field>
+      <field name="view_id" ref="maintenance_planning_plan_requests_wizard_form"/>
+      <field name="target">new</field>
+    </record>
+
+    <menuitem id="menu_maintenance_planning_plan_requests" 
+              name="Generate Maintenace planning" 
+              action="maintenance_planning_plan_requests_action" 
+              parent="maintenance.menu_m_request"
+              sequence="3" />
   </data>
 </odoo>

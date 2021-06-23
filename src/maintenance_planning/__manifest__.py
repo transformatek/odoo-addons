@@ -23,6 +23,7 @@
         'security/ir.model.access.csv',
         'views/views.xml',
         'views/templates.xml',
+        'wizard/plan_maintenance_requests.xml',
     ],
     'qweb': ['static/src/xml/maintenance_planning.xml'],
     'installable': True,
