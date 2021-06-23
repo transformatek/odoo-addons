@@ -1,29 +1,16 @@
 # -*- coding: utf-8 -*-
 
 from odoo import models, fields, api
+import logging
 
-class MaintenanceOperationMaterialLine(models.Model):
-    _name = 'maintenance_planning.required_material'
-    _description = 'Required material for maintenance'
-
-    operation_id = fields.Many2one('maintenance_planning.operation', string='Operation',
-                                ondelete='restrict', index=True)
-
-    product_id = fields.Many2one(
-        'product.product', 'Material',
-        domain="[('type', 'in', ['product', 'consu'])]", 
-        required=True)
-
-    qty_required = fields.Integer('Quantity')
-    comment = fields.Char('Comment') 
-
+_logger = logging.getLogger(__name__)
 
 class MaintenanceOperation(models.Model):
     _name = 'maintenance_planning.operation'
     _description = 'Maintenance operation'
 
     name = fields.Char('Name', required=True)
-
+    sequence = fields.Integer(string='Sequence', default=10)
     maintenance_duration = fields.Float(help="Maintenance Duration in hours.")
 
     periodicity = fields.Selection([('7', 'Week'), ('15', '2 Weeks'), ('30', 'Month'), 
@@ -34,9 +21,9 @@ class MaintenanceOperation(models.Model):
     equipment_id = fields.Many2one('maintenance.equipment', string='Equipment',
                                    ondelete='restrict', index=True, required=True)
 
-    required_material_ids = fields.One2many('maintenance_planning.required_material', 
-                                            'operation_id', ondelete='cascade',
-                                             help='Required material for maintenance operation')
+    # required_material_ids = fields.One2many('maintenance_planning.required_material', 
+    #                                         'operation_id', ondelete='cascade',
+    #                                          help='Required material for maintenance operation')
 
     note = fields.Text('Note')
 
@@ -48,25 +35,39 @@ class MaintenancePlanning(models.Model):
                                         'equipment_id', help='Related maintenance operation')
     
 
-# class MaintenancePlanning(models.Model):
-#     _inherit = 'maintenance.request'
+class MaintenanceOperationMaterialLine(models.Model):
+    _name = 'maintenance_planning.required_material'
+    _description = 'Required material for maintenance'
 
-#     maintenance_operation_ids = fields.One2many('maintenance_planning.operation', 
-#                                         'request_id', help='Related maintenance operation')
     
-    
-    # required_material_ids = fields.One2many('maintenance_planning.required_material', '')
+    sequence = fields.Integer(string='Sequence', default=10)
+    request_id = fields.Many2one('maintenance.request', string='Request',
+                                ondelete='restrict', index=True)
+
+    product_id = fields.Many2one('product.product', 'Material',
+                                domain="[('type', 'in', ['product', 'consu'])]", 
+                                required=True)
+
+    qty_required = fields.Integer('Quantity')
+    comment = fields.Char('Comment') 
+
+    qty_available_today = fields.Float(compute='_compute_qty_at_date')
+    forecasted_issue = fields.Boolean(compute='_compute_qty_at_date')
+
+    @api.depends('product_id', 'qty_required')
+    def _compute_qty_at_date(self):
+        for line in self:
+            line.qty_available_today = line.product_id.qty_available - line.qty_required
+            line.forecasted_issue = True if line.qty_available_today <= 0 else False
+
+class MaintenancePlanning(models.Model):
+    _inherit = 'maintenance.request'
+
+    maintenance_operation_id = fields.Many2one('maintenance_planning.operation', 
+                                        help='Related maintenance operation')
+        
+    required_material_ids = fields.One2many('maintenance_planning.required_material', 
+                                            'request_id', help='Required material for maintenance operation')
 
 
-# class my_module(models.Model):
-#     _name = 'my_module.my_module'
-
-#     name = fields.Char()
-#     value = fields.Integer()
-#     value2 = fields.Float(compute="_value_pc", store=True)
-#     description = fields.Text()
-#
-#     @api.depends('value')
-#     def _value_pc(self):
-#         self.value2 = float(self.value) / 100
 

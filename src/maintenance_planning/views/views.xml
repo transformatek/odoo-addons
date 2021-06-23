@@ -1,6 +1,46 @@
 <odoo>
   <data>
 
+        <!-- maintenace.request : inherited views -->
+
+        <record id="maintenance_planning_request_view_form" model="ir.ui.view">
+          <field name="name">maintenance_planning.request_form</field>
+          <field name="model">maintenance.request</field>
+          <field name="inherit_id" ref="maintenance.hr_equipment_request_view_form" />
+          <field name="arch" type="xml">
+             <xpath expr='//field[@name="description"]' position="replace">
+              <notebook>
+                <page name="required_material" string="Required material">
+                  <field name="required_material_ids" >
+                    <tree string="Required material" editable="bottom">
+                      <field name="sequence" widget="handle" />
+                      <field name="product_id" />
+                      <field name="qty_required" />
+                      <field name="qty_available_today"/> 
+                      <field name="forecasted_issue" invisible="1"/>
+                      <widget name="qty_available_for_maint_widget" width="20px"/>
+                      <field name="comment" />
+                    </tree> 
+                  </field>
+                </page>
+                <page name="description" string="Description">
+                  <field name='description' placeholder="Internal Notes"/>
+                </page>
+              </notebook>
+            </xpath>
+          </field>
+        </record>
+
+        <template id="maintenance_planning_required_material_view_list" 
+                  name="maintenance_planning.required_material.view.list" 
+                  inherit_id="web.assets_backend">
+          <xpath expr="." position="inside">
+              <script type="text/javascript" src="/maintenance_planning/static/src/js/QtyAvailableForMaint.js"></script>
+          </xpath>
+      </template>
+    
+    <!-- maintenace.equipement : inherited views -->
+
     <record id="maintenance_planning_equipment_view_form" model="ir.ui.view">
       <field name="name">maintenance_planning.equipment_form</field>
       <field name="model">maintenance.equipment</field>
@@ -10,7 +50,15 @@
           <attribute name="invisible">True</attribute>
         </xpath>
         <xpath expr='//page[@name="maintenance"]' position='inside'>
-          <field name="maintenance_operation_ids" />
+          <field name="maintenance_operation_ids" >
+            <tree string="Operations" editable="bottom">
+                <field name="sequence" widget="handle" />
+                <field name="name" />
+                <field name="periodicity" />
+                <field name="maintenance_duration" />
+                <field name="note" />
+            </tree>
+          </field>
         </xpath>
       </field>
     </record>
@@ -37,15 +85,6 @@
               </group>
             </group>
             <notebook>
-              <page string="Required materials" name="required_materials">
-                <field name="required_material_ids">
-                  <tree string="Required material" editable="bottom">
-                    <field name="product_id" />
-                    <field name="qty_required" />
-                    <field name="comment" />
-                  </tree>
-                </field>
-              </page>
               <page string="Comment" name="comment">
                 <field name="note" />
               </page>
@@ -59,10 +98,11 @@
       <field name="name">maintenance_planning.operation.tree</field>
       <field name="model">maintenance_planning.operation</field>
       <field name="arch" type="xml">
-        <tree string="Assign To User">
+        <tree string="Maintenace operations">
           <field name="name" string="Name" />
           <field name="periodicity" />
           <field name="equipment_id" />
+          <field name="maintenance_duration" />
         </tree>
       </field>
     </record>
