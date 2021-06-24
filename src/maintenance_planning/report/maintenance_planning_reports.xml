@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <!-- reports for maintenance.request -->
+
+        <record id="maintenance_planning_request_report" model="ir.actions.report">
+            <field name="name">Maintenance request (PDF)</field>
+            <field name="model">maintenance.request</field>
+            <!-- <field name="report_type">qweb-pdf</field> -->
+            <field name="report_type">qweb-html</field>
+            <field name="report_name">maintenance_planning.request_report</field>
+            <field name="report_file">maintenance_planning.request_report</field>
+            <field name="print_report_name">'Maintenance request - %s' % (object.name)</field>
+            <field name="binding_model_id" ref="maintenance.model_maintenance_request" />
+            <field name="binding_type">report</field>
+        </record>
+
+        <template id="maintenance_planning.request_report">
+            <t t-call="web.basic_layout">
+                <div class="page">
+                    <t t-foreach="docs" t-as="request">
+                        <div style="display: inline-table; height:14rem;">
+                            <strong t-field="request.display_name"/>
+                            <p style="height: 2rem">
+                                <strong>Operation:</strong>
+                                <strong t-field="request.maintenance_operation_id" />
+                            </p>
+                            <t t-foreach="request.required_material_ids" t-as="material">
+                                <strong t-field="request.display_name"/>
+                            </t>
+                        </div>
+
+                    </t>
+                </div>
+            </t>
+        </template>
+
+        <!-- reports for maintenance.equipment -->
+
+        <record id="maintenance_planning_equipment_report" model="ir.actions.report">
+            <field name="name">Equipement (PDF)</field>
+            <field name="model">maintenance.equipment</field>
+            <!-- <field name="report_type">qweb-pdf</field> -->
+            <field name="report_type">qweb-html</field>
+            <field name="report_name">maintenance_planning.equipment_report</field>
+            <field name="report_file">maintenance_planning.equipment_report</field>
+            <field name="print_report_name">'Equipement - %s' % (object.name)</field>
+            <field name="binding_model_id" ref="maintenance.model_maintenance_equipment" />
+            <field name="binding_type">report</field>
+        </record>
+
+        <template id="maintenance_planning.equipment_report">
+            <t t-call="web.basic_layout">
+                <div class="page">
+                    <t t-foreach="docs" t-as="equipment">
+                        <div style="display: inline-table; height:14rem;">
+                            <strong t-field="equipment.display_name"/>
+                            <t t-foreach="equipment.maintenance_operation_ids" t-as="operation">
+                                <p style="height: 2rem">
+                                    <strong t-field="operation.name"/>
+                                </p>
+                            <!-- <t t-call="product.report_simple_label">
+                                <t t-set="product" t-value="product"/>
+                            </t> -->
+                        </t>
+                        </div>
+                    </t>
+                </div>
+            </t>
+        </template>
+    </data>
+</odoo>
