@@ -27,19 +27,19 @@ class ProjectDelete(models.TransientModel):
                 ops_number = (self.end_date - self.start_date).days // period
                 if ops_number < 1 :
                         continue
-                _logger.info('----- ' + str(ops_number))
                 ops_type = dict(ops._fields['periodicity'].selection).get(ops.periodicity)
                 for delta in range(0, ops_number):
-                    schedule_date = fields.Datetime.add(fields.Datetime.today(), days = period * (delta + 1))
+                    schedule_date = fields.Datetime.add(self.start_date, days = period * (delta + 1))
                     request_dict = {
-                            'name': equipment.display_name + " - Preventive",# + ops.name + " - " + ops_type,
+                            'name': equipment.display_name + " - Preventive",
                             'category_id': equipment.category_id.id,
                             'equipment_id': equipment.id,
                             'maintenance_type': 'preventive',
                             'duration': ops.maintenance_duration,
                             'maintenance_operation_id': ops.id,
                             'schedule_date': schedule_date,
-                            'color': equipment.id
+                            'color': equipment.id,
+                            'description': ops.name + " - " + ops_type + ' - ' + ops.note
                             }
                     requests.create(request_dict)
        
