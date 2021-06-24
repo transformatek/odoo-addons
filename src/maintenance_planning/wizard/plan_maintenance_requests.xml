@@ -6,11 +6,16 @@
             <field name="model">maintenance_planning.plan.requests.wizard</field>
             <field name="arch" type="xml">
                 <form string="Plan maintenance requests">
-                    <group >
-                        <span>Do you want to generate automatically all maintenance requests for your equipements.</span>
+                    <group>
+                        <group>
+                            <field name="start_date" />
+                        </group>
+                        <group>
+                            <field name="end_date" />
+                        </group>
                     </group>
                     <footer>
-                        <button string="Ok" type="object" name="confirm_plan" class="btn btn-primary" />
+                        <button string="Generate planning" type="object" name="confirm_plan" class="btn btn-primary" />
                         <button string="Cancel" special="cancel" />
                     </footer>
                 </form>

@@ -19,7 +19,7 @@ class MaintenanceOperation(models.Model):
                                     string='Periodicity', required=True)
 
     equipment_id = fields.Many2one('maintenance.equipment', string='Equipment',
-                                   ondelete='restrict', index=True, required=True)
+                                   ondelete='cascade', index=True, required=True)
 
     # required_material_ids = fields.One2many('maintenance_planning.required_material', 
     #                                         'operation_id', ondelete='cascade',
@@ -28,21 +28,22 @@ class MaintenanceOperation(models.Model):
     note = fields.Text('Note')
 
 
-class MaintenancePlanning(models.Model):
+class MaintenancePlanningEquipement(models.Model):
     _inherit = 'maintenance.equipment'
 
     maintenance_operation_ids = fields.One2many('maintenance_planning.operation', 
-                                        'equipment_id', help='Related maintenance operation')
+                                        'equipment_id', ondelete='cascade',
+                                        help='Related maintenance operation')
     
 
-class MaintenanceOperationMaterialLine(models.Model):
+class MaintenanceRequestMaterialLine(models.Model):
     _name = 'maintenance_planning.required_material'
     _description = 'Required material for maintenance'
 
     
     sequence = fields.Integer(string='Sequence', default=10)
     request_id = fields.Many2one('maintenance.request', string='Request',
-                                ondelete='restrict', index=True)
+                                ondelete='cascade', index=True)
 
     product_id = fields.Many2one('product.product', 'Material',
                                 domain="[('type', 'in', ['product', 'consu'])]", 
@@ -60,14 +61,15 @@ class MaintenanceOperationMaterialLine(models.Model):
             line.qty_available_today = line.product_id.qty_available - line.qty_required
             line.forecasted_issue = True if line.qty_available_today <= 0 else False
 
-class MaintenancePlanning(models.Model):
+class MaintenancePlanningRequest(models.Model):
     _inherit = 'maintenance.request'
 
-    maintenance_operation_id = fields.Many2one('maintenance_planning.operation', 
+    maintenance_operation_id = fields.Many2one('maintenance_planning.operation', 'Operation',
                                         help='Related maintenance operation')
         
     required_material_ids = fields.One2many('maintenance_planning.required_material', 
-                                            'request_id', help='Required material for maintenance operation')
+                                            'request_id', ondelete='cascade',
+                                            help='Required material for maintenance operation')
 
 
 
