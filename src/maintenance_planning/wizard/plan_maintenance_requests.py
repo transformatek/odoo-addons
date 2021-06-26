@@ -39,7 +39,7 @@ class ProjectDelete(models.TransientModel):
                             'maintenance_operation_id': ops.id,
                             'schedule_date': schedule_date,
                             'color': equipment.id,
-                            'description': ops.name + " - " + ops_type + ' - ' + ops.note
+                            'description': ops.name + " - " + ops_type + ' - ' + str(ops.note)
                             }
                     requests.create(request_dict)
        
