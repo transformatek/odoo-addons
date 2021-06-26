@@ -5,7 +5,7 @@
         <!-- reports for maintenance.request -->
 
         <record id="maintenance_planning_request_report" model="ir.actions.report">
-            <field name="name">Maintenance request (PDF)</field>
+            <field name="name">Demande de Maintenance (PDF)</field>
             <field name="model">maintenance.request</field>
             <field name="report_type">qweb-pdf</field>
             <!-- <field name="report_type">qweb-html</field> -->
@@ -20,13 +20,13 @@
             <div class="oe_structure" />
 
             <h4 class="mt16">
-                <span>Maintenance request # </span>
+                <span>Demande de Maintenance # </span>
                 <span t-field="request.display_name" />
             </h4>
             <br />
             <t t-if="request.done">
                 <div t-attf-class="font-weight-bold text-center alert-success">
-                                    Request DONE
+                                    Maintenance effectuée
                                 </div>
             </t>
             <t t-if="not request.done">
@@ -36,7 +36,7 @@
             </t>
             <t t-if="request.archive">
                 <div t-attf-class="font-weight-bold text-center alert-danger">
-                                    Request Archived
+                                    Demande archivée
                                 </div>
             </t>
 
@@ -46,57 +46,57 @@
                     <p class="m-0" t-field="request.equipment_id" />
                 </div>
                 <div class="col-auto col-3 mw-100 mb-2">
-                    <strong>Category:</strong>
+                    <strong>Categorie:</strong>
                     <p class="m-0" t-field="request.category_id" />
                 </div>
                 <div class="col-auto col-3 mw-100 mb-2">
-                    <strong>Maintenace type:</strong>
+                    <strong>Type de maintenance:</strong>
                     <p class="m-0" t-field="request.maintenance_type" />
                 </div>
             </div>
             <div class="row mt32 mb32" id="informations">
                 <div class="col-auto col-3 mw-100 mb-2">
-                    <strong>Operation:</strong>
+                    <strong>Opération:</strong>
                     <p class="m-0" t-field="request.maintenance_operation_id" />
                 </div>
                 <div class="col-auto col-3 mw-100 mb-2">
-                    <strong>Team:</strong>
+                    <strong>Equipe:</strong>
                     <p class="m-0" t-field="request.maintenance_team_id" />
                 </div>
                 <div class="col-auto col-3 mw-100 mb-2">
-                    <strong>Responsible:</strong>
+                    <strong>Responsable:</strong>
                     <p class="m-0" t-field="request.user_id" />
                 </div>
             </div>
             <div class="row mt32 mb32" id="informations">
                 <div class="col-auto col-3 mw-100 mb-2">
-                    <strong>Created by User:</strong>
+                    <strong>Créateur:</strong>
                     <p class="m-0" t-field="request.owner_user_id" />
                 </div>
                 <div class="col-auto col-3 mw-100 mb-2">
-                    <strong>Technician:</strong>
+                    <strong>Technicien:</strong>
                     <p class="m-0" t-field="request.user_id" />
                 </div>
                 <div class="col-auto col-3 mw-100 mb-2">
-                    <strong>Priority:</strong>
+                    <strong>Priorité:</strong>
                     <p class="m-0" t-field="request.priority" />
                 </div>
             </div>
             <div class="row mt32 mb32" id="informations">
                 <div class="col-auto col-4 mw-100 mb-2">
-                    <strong>Duration:</strong>
+                    <strong>Durée:</strong>
                     <p class="m-0" t-field="request.duration" />
                 </div>
                 <div class="col-auto col-4 mw-100 mb-2">
-                    <strong>Request date:</strong>
+                    <strong>Date de la demande:</strong>
                     <p class="m-0" t-field="request.request_date" />
                 </div>
                 <div class="col-auto col-4 mw-100 mb-2">
-                    <strong>Schedule date:</strong>
+                    <strong>Date planifée:</strong>
                     <p class="m-0" t-field="request.schedule_date" />
                 </div>
                 <div class="col-auto col-4 mw-100 mb-2">
-                    <strong>Close date:</strong>
+                    <strong>Date de cloture:</strong>
                     <p class="m-0" t-field="request.close_date" />
                 </div>
             </div>
@@ -109,7 +109,7 @@
             </div>
 
             <h5 class="mt16">
-                <span>Required material</span>
+                <span>Matériel requis</span>
             </h5>
 
 
@@ -117,9 +117,9 @@
                 <!-- In case we want to repeat the header, remove "display: table-row-group" -->
                 <thead style="display: table-row-group">
                     <tr>
-                        <th name="th_product" class="text-left">Material</th>
-                        <th name="th_quantity" class="text-center">Required quantity</th>
-                        <th name="th_comment" class="text-left">Comment</th>
+                        <th name="th_product" class="text-left">Materiel</th>
+                        <th name="th_quantity" class="text-center">Quanité requise</th>
+                        <th name="th_comment" class="text-left">Commentaire</th>
                     </tr>
                 </thead>
                 <tbody class="sale_tbody">
@@ -160,8 +160,8 @@
         <record id="maintenance_planning_equipment_report" model="ir.actions.report">
             <field name="name">Equipement (PDF)</field>
             <field name="model">maintenance.equipment</field>
-            <!-- <field name="report_type">qweb-pdf</field> -->
-            <field name="report_type">qweb-html</field>
+            <field name="report_type">qweb-pdf</field>
+            <!-- <field name="report_type">qweb-html</field> -->
             <field name="report_name">maintenance_planning.equipment_report</field>
             <field name="report_file">maintenance_planning.equipment_report</field>
             <field name="print_report_name">'Equipement - %s' % (object.name)</field>
@@ -182,79 +182,79 @@
 
                             <div class="row mt32 mb32" id="informations">
                                 <div class="col-auto col-3 mw-100 mb-2">
-                                    <strong>Category:</strong>
+                                    <strong>Catégorie:</strong>
                                     <p class="m-0" t-field="equipment.category_id" />
                                 </div>
                                 <div class="col-auto col-3 mw-100 mb-2">
-                                    <strong>Supplier:</strong>
+                                    <strong>Fournisseur:</strong>
                                     <p class="m-0" t-field="equipment.partner_id" />
                                 </div>
                                 <div class="col-auto col-3 mw-100 mb-2">
-                                    <strong>Supplier reference:</strong>
+                                    <strong>Référence fournisseur:</strong>
                                     <p class="m-0" t-field="equipment.partner_ref" />
                                 </div>
                             </div>
 
                             <div class="row mt32 mb32" id="informations">
                                 <div class="col-auto col-3 mw-100 mb-2">
-                                    <strong>Technician:</strong>
+                                    <strong>Technicien:</strong>
                                     <p class="m-0" t-field="equipment.technician_user_id" />
                                 </div>
                                 <div class="col-auto col-3 mw-100 mb-2">
-                                    <strong>Owner:</strong>
+                                    <strong>Propriétaire:</strong>
                                     <p class="m-0" t-field="equipment.owner_user_id" />
                                 </div>
                                 <div class="col-auto col-3 mw-100 mb-2">
-                                    <strong>Maintenance Team:</strong>
+                                    <strong>Equipe de maintenance:</strong>
                                     <p class="m-0" t-field="equipment.maintenance_team_id" />
                                 </div>
                             </div>
 
                             <div class="row mt32 mb32" id="informations">
                                 <div class="col-auto col-4 mw-100 mb-2">
-                                    <strong>Model:</strong>
+                                    <strong>Modèle:</strong>
                                     <p class="m-0" t-field="equipment.model" />
                                 </div>
                                 <div class="col-auto col-4 mw-100 mb-2">
-                                    <strong>Serial Number:</strong>
+                                    <strong>Numéro de série:</strong>
                                     <p class="m-0" t-field="equipment.serial_no" />
                                 </div>
                                 <div class="col-auto col-4 mw-100 mb-2">
-                                    <strong>Location:</strong>
+                                    <strong>Localisation:</strong>
                                     <p class="m-0" t-field="equipment.location" />
                                 </div>
                                 <div class="col-auto col-4 mw-100 mb-2">
-                                    <strong>Cost:</strong>
+                                    <strong>Coût:</strong>
                                     <p class="m-0" t-field="equipment.cost" />
                                 </div>
                             </div>
 
                             <div class="row mt32 mb32" id="informations">
                                 <div class="col-auto col-4 mw-100 mb-2">
-                                    <strong>Assigned Date:</strong>
+                                    <strong>Date d'assignation:</strong>
                                     <p class="m-0" t-field="equipment.assign_date" />
                                 </div>
                                 <div class="col-auto col-4 mw-100 mb-2">
-                                    <strong>Effective Date:</strong>
+                                    <strong>Date effective:</strong>
                                     <p class="m-0" t-field="equipment.effective_date" />
                                 </div>
                                 <div class="col-auto col-4 mw-100 mb-2">
-                                    <strong>Warranty Expiration Date:</strong>
+                                    <strong>Expiration de la garantie :</strong>
                                     <p class="m-0" t-field="equipment.warranty_date" />
                                 </div>
                                 <div class="col-auto col-4 mw-100 mb-2">
-                                    <strong>Scrap Date:</strong>
+                                    <strong>Date de rebut:</strong>
                                     <p class="m-0" t-field="equipment.scrap_date" />
                                 </div>
                             </div>
 
                             <div class="row mt32 mb32" id="informations">
                                 <div class="col-auto col-2 mw-100 mb-2">
-                                    <strong>Maintenance Count:</strong>
+                                    <strong>Nombre de demandes de Maintenance:</strong>
                                     <p class="m-0" t-field="equipment.maintenance_count" />
                                 </div>
                                 <div class="col-auto col-2 mw-100 mb-2">
-                                    <strong>Current Maintenance:</strong>
+                                    <strong>Maintenances en cours:</strong>
                                     <p class="m-0" t-field="equipment.maintenance_open_count" />
                                 </div>
                             </div>
@@ -267,16 +267,16 @@
                             </div>
 
                             <h5 class="mt16">
-                                <span>Mainetnance operations </span>
+                                <span>Opérations de Maintenance</span>
                             </h5>
 
                             <table class="table table-sm o_main_table">
                                 <!-- In case we want to repeat the header, remove "display: table-row-group" -->
                                 <thead style="display: table-row-group">
                                     <tr>
-                                        <th name="th_name" class="text-left">Name</th>
-                                        <th name="th_perdiodicity" class="text-left">Periodicity</th>
-                                        <th name="th_duration" class="text-center">Duration (hours)</th>
+                                        <th name="th_name" class="text-left">Nom</th>
+                                        <th name="th_perdiodicity" class="text-left">Periodicité</th>
+                                        <th name="th_duration" class="text-center">Durée (heurs)</th>
                                         <th name="th_note" class="text-left">Note</th>
                                     </tr>
                                 </thead>

@@ -95,7 +95,7 @@
               </group>
               <group>
                 <field name="periodicity" />
-                <label for="maintenance_duration" string="Maintenance Duration" />
+                <label for="maintenance_duration" string="Durrée de Maintenance" />
                 <div class="o_row">
                   <field name="maintenance_duration" />
                   hours
@@ -130,10 +130,10 @@
       <field name="model">maintenance_planning.operation</field>
       <field name="arch" type="xml">
         <search string="Search">
-          <field name="name" string="Operation Name" filter_domain="[('name','ilike',self)]" />
+          <field name="name" string="Nom de l'Opération" filter_domain="[('name','ilike',self)]" />
           <group expand='0' string='Group by...'>
             <filter string='Equipement' name="equipement" domain="[]" context="{'group_by' : 'equipment_id'}" />
-            <filter string='Periodicity' name="periodicity" domain="[]" context="{'group_by' : 'periodicity'}" />
+            <filter string='Periodicité' name="periodicity" domain="[]" context="{'group_by' : 'periodicity'}" />
           </group>
         </search>
       </field>
@@ -141,25 +141,25 @@
 
     <!-- maintenace.operations : actions -->
     <record id="maintenance_planning_operation_action" model="ir.actions.act_window">
-      <field name="name">Maintenance operations</field>
+      <field name="name">Opérations de maintenance</field>
       <field name="res_model">maintenance_planning.operation</field>
       <field name="view_mode">tree,form</field>
       <field name="help" type="html">
         <p class="o_view_nocontent_smiling_face">
-                  Add a new Maintenance operation
+                  Ajouter une nouvelle Opération de Maintenance
               </p>
       </field>
     </record>
 
     <menuitem id="menu_maintenance_planning_operation" 
-              name="Maintenance operations" 
+              name="Opérations de maintenance" 
               parent="maintenance.menu_maintenance_configuration" 
               action="maintenance_planning_operation_action" 
               sequence="3" />
 
     <!-- maintenace.plan.requests : actions -->
     <record id="maintenance_planning_plan_requests_action" model="ir.actions.act_window">
-      <field name="name">Plan maintenance requests</field>
+      <field name="name">Planifier les demandes de maintenance</field>
       <field name="res_model">maintenance_planning.plan.requests.wizard</field>
       <field name="type">ir.actions.act_window</field>
       <field name="view_mode">form</field>
@@ -168,7 +168,7 @@
     </record>
 
     <menuitem id="menu_maintenance_planning_plan_requests" 
-              name="Generate Maintenace planning" 
+              name="Planifier les demandes de maintenance" 
               action="maintenance_planning_plan_requests_action" 
               parent="maintenance.menu_m_request"
               sequence="3" />

@@ -13,8 +13,8 @@ class ProjectDelete(models.TransientModel):
     _name = 'maintenance_planning.plan.requests.wizard'
     _description = 'Plan maintenance requests'
 
-    start_date = fields.Date('Start date', default=fields.Date.today())
-    end_date = fields.Date('End date', default=fields.Date.add(fields.Date.today(), months = 1))
+    start_date = fields.Date('Date de début', default=fields.Date.today())
+    end_date = fields.Date('Date de fin', default=fields.Date.add(fields.Date.today(), months = 1))
 
     def confirm_plan(self):
 

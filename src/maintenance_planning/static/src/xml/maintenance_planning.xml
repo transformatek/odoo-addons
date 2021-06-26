@@ -8,7 +8,7 @@
 
 
     <div t-name="maintenance_planning.QtyDetailPopOver">
-        <strong>Quantity required: </strong><span t-esc="data.qty_required"/> <br/>
-        <strong>Remaining quantity: </strong><span t-esc="data.qty_available_today"/> <br/>
+        <strong>Quantité requise: </strong><span t-esc="data.qty_required"/> <br/>
+        <strong>Quantité restante: </strong><span t-esc="data.qty_available_today"/> <br/>
     </div>
 </templates>

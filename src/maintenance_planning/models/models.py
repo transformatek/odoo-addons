@@ -9,14 +9,14 @@ class MaintenanceOperation(models.Model):
     _name = 'maintenance_planning.operation'
     _description = 'Maintenance operation'
 
-    name = fields.Char('Name', required=True)
+    name = fields.Char('Nom', required=True)
     sequence = fields.Integer(string='Sequence', default=10)
-    maintenance_duration = fields.Float(help="Maintenance Duration in hours.")
+    maintenance_duration = fields.Float('Durée', help="Maintenance Duration in hours.")
 
-    periodicity = fields.Selection([('7', 'Week'), ('15', '2 Weeks'), ('30', 'Month'), 
-                                    ('60', 'Two months'), ('90', 'Three months'), 
-                                    ('180', 'Six months'),('365', 'Year')], 
-                                    string='Periodicity', required=True)
+    periodicity = fields.Selection([('7', 'Semaine'), ('15', '2 Semaines'), ('30', 'Mois'), 
+                                    ('60', 'Deux mois'), ('90', 'Trois mois'), 
+                                    ('180', 'Six mois'),('365', 'Un ans')], 
+                                    string='Periodicité', required=True)
 
     equipment_id = fields.Many2one('maintenance.equipment', string='Equipment',
                                    ondelete='cascade', index=True, required=True)
@@ -42,17 +42,17 @@ class MaintenanceRequestMaterialLine(models.Model):
 
     
     sequence = fields.Integer(string='Sequence', default=10)
-    request_id = fields.Many2one('maintenance.request', string='Request',
+    request_id = fields.Many2one('maintenance.request', string='Requête',
                                 ondelete='cascade', index=True)
 
-    product_id = fields.Many2one('product.product', 'Material',
+    product_id = fields.Many2one('product.product', 'Matériel nécessaire',
                                 domain="[('type', 'in', ['product', 'consu'])]", 
                                 required=True)
 
-    qty_required = fields.Integer('Quantity')
-    comment = fields.Char('Comment') 
+    qty_required = fields.Integer('Quantité requise')
+    comment = fields.Char('Commentaire') 
 
-    qty_available_today = fields.Float(compute='_compute_qty_at_date')
+    qty_available_today = fields.Float('Quantité disponible', compute='_compute_qty_at_date')
     forecasted_issue = fields.Boolean(compute='_compute_qty_at_date')
 
     @api.depends('product_id', 'qty_required')
