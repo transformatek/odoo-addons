@@ -9,7 +9,7 @@ import logging
 
 _logger = logging.getLogger(__name__)
 
-class ProjectDelete(models.TransientModel):
+class MaintenacePlannigPlan(models.TransientModel):
     _name = 'maintenance_planning.plan.requests.wizard'
     _description = 'Plan maintenance requests'
 
