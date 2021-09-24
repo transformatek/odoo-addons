@@ -14,4 +14,28 @@
 		</template>
 	</data>
 
+	<data>
+		<template id="report_saleorder_document_with_text_amount" inherit_id="sale.report_saleorder_document">
+			<xpath expr="//div[@name='so_total_summary']" position="after">
+				<br/>
+				<p>
+					<strong>ARRETEE LE PRESENT DEVIS/COMMANDE A LA SOMME DE:  </strong>
+					<span t-field="doc.amount_to_text" />
+				</p>
+			</xpath>
+		</template>
+	</data>	
+	
+	<data>
+		<template id="report_invoice_document_with_text_amount" inherit_id="account.report_invoice_document">
+			<xpath expr="//div[@class='clearfix']" position="after">
+				<br/>
+				<p>
+					<strong>ARRETEE LE PRESENT FACTURE A LA SOMME DE:  </strong>
+					<span t-field="o.amount_to_text" />
+				</p>
+			</xpath>
+		</template>
+	</data>
+
 </odoo>

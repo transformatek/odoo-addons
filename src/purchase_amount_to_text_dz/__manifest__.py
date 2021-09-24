@@ -24,7 +24,7 @@ This module applies to companies based in Algeria.
     'author': 'Osis + TransformaTek',
     'website': 'https://transformatek.dz/',
     'version': '14.0.0.0.0',
-    'depends': ['purchase'],
+    'depends': ['purchase', 'sale', 'account'],
     'data': [
         'views/order_invoice.xml',
 
