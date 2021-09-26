@@ -3,6 +3,8 @@
 #
 # Copyright (c) 2016  - Osis - www.osis-dz.net
 
+# Copyright (c) 2021 TransformaTek.dz  (<https://transformatek.dz/>)
+
 
 from math import ceil
 from odoo import api, fields, models, _
@@ -10,7 +12,7 @@ import odoo.addons.decimal_precision as dp
 from odoo.exceptions import UserError
 
 class ConfigTimbre(models.Model):
-    _inherit = ['mail.thread', 'ir.needaction_mixin']
+    _inherit = ['mail.thread']
     _name='config.timbre'
     _description='Fiscal Timbre configuration'
 

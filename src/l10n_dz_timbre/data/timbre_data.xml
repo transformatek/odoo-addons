@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<openerp>
+<odoo>
     <data noupdate="1">
 	
 	<!--
@@ -13,19 +13,5 @@
             <field name="max_value">2500.0</field>
         </record>
    
-        <!--
-        Payment term
-        -->
-        <record id="account_payment_term_cash" model="account.payment.term">
-            <field name="name">Espèce (Timbre)</field>
-            <field name="payment_type">cash</field>
-            <field name="note">Espèce</field>
-        </record>
-
-        <record id="account_payment_term_line_cash" model="account.payment.term.line">
-            <field name="value">balance</field>
-            <field eval="0" name="days"/>
-            <field eval="account_payment_term_cash" name="payment_id"/>
-        </record>
     </data>
-</openerp>
+</odoo>

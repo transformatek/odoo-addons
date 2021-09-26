@@ -31,7 +31,7 @@ def _convert_nn_fr(val):
 
 def _convert_nnn_fr(val):
     """ convert a value < 1000 to french
-    
+
         special cased because it is the level that kicks 
         off the < 100 special case.  The rest are more general.  This also allows you to
         get strings in the form of 'forty-five hundred' if called directly.
@@ -87,9 +87,31 @@ class PurchaseOrder(models.Model):
     amount_to_text = fields.Text(string='In Words',
                                  store=True, readonly=True, compute='_amount_in_words')
 
-    # @api.one
     @api.depends('amount_total')
     def _amount_in_words(self):
         for record in self:
             record.amount_to_text = amount_to_text_fr(
                 record.amount_total, record.currency_id.symbol)
+
+
+class SaleOrderAmountToText(models.Model):
+    _inherit = "sale.order"
+
+    amount_to_text = fields.Text(string='In Words',
+                                 store=True, readonly=True, compute='_amount_in_words')
+
+    @api.depends('amount_total')
+    def _amount_in_words(self):
+        self.amount_to_text = amount_to_text_fr(
+            self.amount_total, self.pricelist_id.currency_id.symbol)
+
+
+class AccountInvoice(models.Model):
+    _inherit = "account.move"
+   
+    amount_to_text = fields.Text(string='In Words',
+        store=True, readonly=True, compute='_amount_in_words')
+    
+    @api.depends('amount_total')
+    def _amount_in_words(self):
+        self.amount_to_text = amount_to_text_fr(self.amount_total, self.currency_id.symbol)
