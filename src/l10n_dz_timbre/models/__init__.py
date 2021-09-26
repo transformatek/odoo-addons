@@ -3,9 +3,9 @@
 #
 # Copyright (c) 2016  - Osis - www.osis-dz.net
 
-# from . import timbre
-from . import payment_term
-from . import sale_invoice
+# Copyright (c) 2021 TransformaTek.dz  (<https://transformatek.dz/>)
 
+from . import timbre_invoice
+from . import timbre
 
 
