@@ -7,7 +7,7 @@
 			<xpath expr="//p[@t-field='o.notes']" position="before">
 				<br/>
 				<p>
-					<strong>ARRETEE LE PRESENT DEVIS/COMMANDE A LA SOMME DE:  </strong>
+					<strong>ARRETEE LA PRESENTE COMMANDE A LA SOMME DE:  </strong>
 					<span t-field="o.amount_to_text" />
 				</p>
 			</xpath>
@@ -19,7 +19,7 @@
 			<xpath expr="//div[@name='so_total_summary']" position="after">
 				<br/>
 				<p>
-					<strong>ARRETEE LE PRESENT DEVIS/COMMANDE A LA SOMME DE:  </strong>
+					<strong>ARRETEE LE PRESENT DEVIS/FACTURE PROFORMA A LA SOMME DE:  </strong>
 					<span t-field="doc.amount_to_text" />
 				</p>
 			</xpath>
@@ -31,7 +31,7 @@
 			<xpath expr="//div[@class='clearfix']" position="after">
 				<br/>
 				<p>
-					<strong>ARRETEE LE PRESENT FACTURE A LA SOMME DE:  </strong>
+					<strong>ARRETEE LA PRESENTE FACTURE A LA SOMME DE:  </strong>
 					<span t-field="o.amount_to_text" />
 				</p>
 			</xpath>

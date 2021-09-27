@@ -11,22 +11,22 @@
     'version': '14.0',
     'category': 'Accounting',
     'website': 'https://transformatek.dz/',
-    'summary': 'This is the module print amount to Text with fiscal timbre.',
+    'summary': 'This is the module print amount to Text in the Orders and Invoices reports.',
     'license': 'AGPL-3',
     'description': """
-This is the module print amount to Text with fiscal timbre.
+This is the module print amount to Text in the purchase reports.
 ========================================================================
 
 This module applies to companies based in Algeria.
 
-**Email:** contact@osis.dz
+**Email:** contact@transformatek.dz
 """,
     'author': 'Osis + TransformaTek',
     'website': 'https://transformatek.dz/',
     'version': '14.0.0.0.0',
-    # 'depends': ['l10n_dz_timbre'],
+    'depends': ['purchase', 'sale', 'account'],
     'data': [
-        'views/order_invoice.xml',
+        'reports/orders_invoice_reports.xml',
 
     ],
 

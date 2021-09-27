@@ -12,10 +12,9 @@ from odoo import fields, models, api
 class AccountInvoiceTimbre(models.Model):
     _inherit = "account.move"
 
-    # payment_type = fields.Char('Type de paiement')
-    amount_timbre = fields.Monetary(string='Timbre', store=True, readonly=True,
+    amount_timbre = fields.Monetary(string='Timbre', readonly=True,
                              compute='_compute_amount_timbre', track_visibility='always')
-    amount_total_timbre = fields.Monetary(string='Total avec Timbre', store=True,
+    amount_total_timbre = fields.Monetary(string='Total avec Timbre', 
                                     readonly=True, compute='_compute_amount_timbre', track_visibility='always')
 
     @api.depends('amount_total')

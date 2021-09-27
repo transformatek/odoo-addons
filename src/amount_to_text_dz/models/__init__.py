@@ -3,4 +3,7 @@
 #
 # Copyright (c) 2016  - Osis - www.osis-dz.net
 
+# Copyright (c) 2021 TransformaTek.dz  (<https://transformatek.dz/>)
+
+
 from . import amount_to_text_fr

@@ -2,15 +2,17 @@
 
 from odoo import api, fields, models, _
 
-to_19_fr = (u'zéro', 'un', 'deux', 'trois', 'quatre', 'cinq', 'six',
-          'sept', 'huit', 'neuf', 'dix', 'onze', 'douze', 'treize',
-          'quatorze', 'quinze', 'seize', 'dix-sept', 'dix-huit', 'dix-neuf')
-tens_fr = ('vingt', 'trente', 'quarante', 'Cinquante', 'Soixante', 'Soixante-dix', 'Quatre-vingts', 'Quatre-vingt Dix')
+to_19_fr = (u'Zéro', 'Un', 'Deux', 'Trois', 'Quatre', 'Cinq', 'Six',
+            'Sept', 'Huit', 'Neuf', 'Dix', 'Onze', 'Douze', 'Treize',
+            'Quatorze', 'Quinze', 'Seize', 'Dix-sept', 'Dix-huit', 'Dix-neuf')
+tens_fr = ('Vingt', 'Trente', 'Quarante', 'Cinquante', 'Soixante',
+           'Soixante-dix', 'Quatre-vingts', 'Quatre-vingt Dix')
 denom_fr = ('',
-          'Mille', 'Millions', 'Milliards', 'Billions', 'Quadrillions',
-          'Quintillion', 'Sextillion', 'Septillion', 'Octillion', 'Nonillion',
-          'Décillion', 'Undecillion', 'Duodecillion', 'Tredecillion', 'Quattuordecillion',
-          'Sexdecillion', 'Septendecillion', 'Octodecillion', 'Icosillion', 'Vigintillion')
+            'Mille', 'Millions', 'Milliards', 'Billions', 'Quadrillions',
+            'Quintillion', 'Sextillion', 'Septillion', 'Octillion', 'Nonillion',
+            'Décillion', 'Undecillion', 'Duodecillion', 'Tredecillion', 'Quattuordecillion',
+            'Sexdecillion', 'Septendecillion', 'Octodecillion', 'Icosillion', 'Vigintillion')
+
 
 def _convert_nn_fr(val):
     """ convert a value < 100 to French
@@ -21,14 +23,15 @@ def _convert_nn_fr(val):
         if dval + 10 > val:
             if val % 10:
                 if dval == 70 or dval == 90:
-                    return tens_fr[dval / 10 - 3] + '-' + to_19_fr[val % 10 + 10]
+                    return tens_fr[int(dval / 10 - 3)] + '-' + to_19_fr[val % 10 + 10]
                 else:
                     return dcap + '-' + to_19_fr[val % 10]
             return dcap
 
+
 def _convert_nnn_fr(val):
     """ convert a value < 1000 to french
-    
+
         special cased because it is the level that kicks 
         off the < 100 special case.  The rest are more general.  This also allows you to
         get strings in the form of 'forty-five hundred' if called directly.
@@ -45,6 +48,7 @@ def _convert_nnn_fr(val):
     if mod > 0:
         word += _convert_nn_fr(mod)
     return word
+
 
 def french_number(val):
     if val < 100:
@@ -64,6 +68,7 @@ def french_number(val):
                 ret = ret + ', ' + french_number(r)
             return ret
 
+
 def amount_to_text_fr(numbers, currency):
     number = '%.2f' % numbers
     units_name = currency
@@ -75,37 +80,38 @@ def amount_to_text_fr(numbers, currency):
     final_result = start_word + ' ' + units_name + ' ' + end_word + ' ' + cents_name
     return final_result
 
-# class AccountInvoice(models.Model):
-#     _inherit = "account.invoice"
-   
-#     # @api.one
-#     @api.depends('amount_timbre','payment_term_id')
-#     def _amount_in_words(self):
-#         self.amount_to_text = amount_to_text_fr(self.amount_timbre, self.currency_id.symbol)
 
-#     amount_to_text = fields.Text(string='In Words',
-#         store=True, readonly=True, compute='_amount_in_words')
-
-class SaleOrder(models.Model):
-    _inherit = "sale.order"
-
-    # @api.one
-    @api.depends('amount_timbre','payment_term_id')
-    def _amount_in_words(self):
-        self.amount_to_text = amount_to_text_fr(self.amount_timbre, self.pricelist_id.currency_id.symbol)
-    
-    
-    amount_to_text = fields.Text(string='In Words',
-        store=True, readonly=True, compute='_amount_in_words')
-
-class PurchaseOrder(models.Model):
+class PurchaseOrderAmountToText(models.Model):
     _inherit = "purchase.order"
 
-    # @api.one
+    amount_to_text = fields.Text(string='In Words',
+                                 store=True, readonly=True, compute='_amount_in_words')
+
+    @api.depends('amount_total')
+    def _amount_in_words(self):
+        for record in self:
+            record.amount_to_text = amount_to_text_fr(
+                record.amount_total, record.currency_id.symbol)
+
+
+class SaleOrderAmountToText(models.Model):
+    _inherit = "sale.order"
+
+    amount_to_text = fields.Text(string='In Words',
+                                 store=True, readonly=True, compute='_amount_in_words')
+
+    @api.depends('amount_total')
+    def _amount_in_words(self):
+        self.amount_to_text = amount_to_text_fr(
+            self.amount_total, self.pricelist_id.currency_id.symbol)
+
+
+class AccountInvoiceAmountToText(models.Model):
+    _inherit = "account.move"
+   
+    amount_to_text = fields.Text(string='In Words',
+        store=True, readonly=True, compute='_amount_in_words')
+    
     @api.depends('amount_total')
     def _amount_in_words(self):
         self.amount_to_text = amount_to_text_fr(self.amount_total, self.currency_id.symbol)
-    
-    
-    amount_to_text = fields.Text(string='In Words',
-        store=True, readonly=True, compute='_amount_in_words')
