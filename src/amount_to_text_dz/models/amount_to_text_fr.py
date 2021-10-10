@@ -85,7 +85,7 @@ class PurchaseOrderAmountToText(models.Model):
     _inherit = "purchase.order"
 
     amount_to_text = fields.Text(string='In Words',
-                                 store=True, readonly=True, compute='_amount_in_words')
+                                 readonly=True, compute='_amount_in_words')
 
     @api.depends('amount_total')
     def _amount_in_words(self):
@@ -98,7 +98,7 @@ class SaleOrderAmountToText(models.Model):
     _inherit = "sale.order"
 
     amount_to_text = fields.Text(string='In Words',
-                                 store=True, readonly=True, compute='_amount_in_words')
+                                 readonly=True, compute='_amount_in_words')
 
     @api.depends('amount_total')
     def _amount_in_words(self):
@@ -108,10 +108,11 @@ class SaleOrderAmountToText(models.Model):
 
 class AccountInvoiceAmountToText(models.Model):
     _inherit = "account.move"
-   
+
     amount_to_text = fields.Text(string='In Words',
-        store=True, readonly=True, compute='_amount_in_words')
-    
+                                 readonly=True, compute='_amount_in_words')
+
     @api.depends('amount_total')
     def _amount_in_words(self):
-        self.amount_to_text = amount_to_text_fr(self.amount_total, self.currency_id.symbol)
+        self.amount_to_text = amount_to_text_fr(
+            self.amount_total, self.currency_id.symbol)
