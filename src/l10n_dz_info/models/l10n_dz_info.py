@@ -12,8 +12,6 @@ class ResCompany(models.Model):
     nif = fields.Char(string='N.I.F', size=15)
     nis = fields.Char(string='N.I.S')
     ai = fields.Char(string='Article d\'imposition')
-    
-
 
 class ResPartner(models.Model):
     _inherit = 'res.partner'
