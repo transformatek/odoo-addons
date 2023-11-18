@@ -2,6 +2,29 @@
 Odoo addons developped by TransformaTek team
 
 
+## Prerequisite 
+
+* A working installations of Docker and Docker compose
+    - [https://docs.docker.com/engine/install/](https://docs.docker.com/engine/install/)
+    - [https://docs.docker.com/compose/install/](https://docs.docker.com/compose/install/) 
+
+## Develop
+
+First time only
+```bash
+docker-compose build 
+```
+
+```bash
+docker-compose up
+```
+Acces the Web server at the folowing address [http://localhost:8069](http://localhost:8069)
+
+After updating a python file 
+```bash
+docker container restart wadifny_odoo
+```
+
 ## Regenerate assets using RPC calls
 
 ```bash
