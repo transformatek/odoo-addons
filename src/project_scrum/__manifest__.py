@@ -9,7 +9,7 @@
     'category': "Project",
     'summary': 'Adds the ability to create Sprints and Scrum teams.',
     'website': 'https://transformatek.dz/',
-    'version': '13.0.0.0.0',
+    'version': '13.0.0',
     'license': 'AGPL-3',
     'description': """
 Project Scrum
