@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="view_tpe_model_form" model="ir.ui.view">
+        <field name="name">tpe.model.form</field>
+        <field name="model">tpe.model</field>
+        <field name="arch" type="xml">
+            <form string="Modèle TPE">
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                        <field name="constructor_id"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_tpe_model_tree" model="ir.ui.view">
+        <field name="name">tpe.model.tree</field>
+        <field name="model">tpe.model</field>
+        <field name="arch" type="xml">
+            <tree string="Modèles TPE">
+                <field name="name"/>
+                <field name="constructor_id"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="action_tpe_model" model="ir.actions.act_window">
+        <field name="name">Model</field>
+        <field name="res_model">tpe.model</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+    <menuitem id="menu_tpe_model" name="Model" parent="tpe_managment.menu_tpe" action="action_tpe_model"/>
+
+</odoo>

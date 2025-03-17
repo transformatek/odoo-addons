@@ -1,0 +1,6 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+
+access_tpe_managment_tpe_managment,tpe_managment.tpe_managment.tpe.banque,tpe_managment.model_tpe_banque,base.group_system,1,1,1,1
+access_tpe_managment_tpe_managment_constructor,tpe_managment.tpe_managment.tpe.constructor,tpe_managment.model_tpe_constructor,base.group_system,1,1,1,1
+access_tpe_managment_tpe_managment_model,tpe_managment.tpe_managment.tpe.model,tpe_managment.model_tpe_model,base.group_system,1,1,1,1
+access_tpe_managment_tpe_managment_tpe_tpe_model,tpe_managment.tpe_managment.tpe.tpe,tpe_managment.model_tpe_tpe,base.group_system,1,1,1,1

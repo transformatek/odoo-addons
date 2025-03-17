@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <menuitem
+            name="Tpe management"
+            id="tpe_managment.tpe_management_root"
+           />
+     
+
+    </data>
+</odoo>
