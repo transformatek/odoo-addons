@@ -40,6 +40,6 @@
         <field name="res_model">tpe.tpe</field>
         <field name="view_mode">tree,form</field>
     </record>
-    <menuitem id="menu_tpe" name="TPE" parent="tpe_managment.tpe_management_root" action="action_tpe"/>
+    <menuitem id="menu_tpe_tpe" name="TPE" parent="tpe_managment.menu_tpe" action="action_tpe" sequence="1"/>
     
 </odoo>

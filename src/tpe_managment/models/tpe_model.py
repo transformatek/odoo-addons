@@ -1,6 +1,9 @@
 # -*- coding: utf-8 -*-
 
-from odoo import models, fields, api
+from odoo import models, fields, api ,tools 
+import base64
+
+
 
 
 class TPE(models.Model):
@@ -19,3 +22,8 @@ class TPE(models.Model):
     contact_id = fields.Many2one('res.partner', string="Contact")
     model_id = fields.Many2one('tpe.model', string='Modèle')
     observation = fields.Text(string='Observation')
+  
+    def action_print_tpe_report(self):
+        """Action pour générer le rapport PDF"""
+        return self.env.ref('tpe_managment.action_report_tpe_installation').report_action(self)
+

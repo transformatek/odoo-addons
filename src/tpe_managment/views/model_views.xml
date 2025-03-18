@@ -31,6 +31,6 @@
         <field name="res_model">tpe.model</field>
         <field name="view_mode">tree,form</field>
     </record>
-    <menuitem id="menu_tpe_model" name="Model" parent="tpe_managment.menu_tpe" action="action_tpe_model"/>
+    <menuitem id="menu_tpe_model" name="Model" parent="tpe_managment.menu_tpe" action="action_tpe_model" sequence="30"/>
 
 </odoo>

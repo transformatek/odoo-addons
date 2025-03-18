@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <template id="report_tpe_installation">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="tpe">
+                <div class="page">
+                    <table border="1" style="width: 100%; border-collapse: collapse; margin-bottom: 15px; border: 3px solid black;">
+                        <tr style="height: 75px;">
+                            <td style="width: 30%; text-align: center;">
+                                <img alt="Ssb" t-att-src="'/tpe_managment/static/src/img/ssb.png'" style="width: 100px; height: auto;" />
+
+                            </td>
+                            <td style="width: 40%; text-align: center; font-size: 18px; font-weight: bold;">
+                                <h3 style="margin: 4;">Fiche d'installation</h3>
+
+                            </td>
+                            <td style="width: 30%; text-align: left;">
+                                <p>Réf : NTX / SSB / 2</p>
+                            </td>
+                        </tr>
+                    </table>
+
+                    <table border="1" style="width: 100%; border-collapse: collapse; margin-bottom: 15px; border: 3px solid black;">
+                        <tr>
+                            <td style="text-align: center;" colspan="4">
+                                <strong>Commerçant</strong>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Nom :
+                            </td>
+                            <td>
+                                <t t-esc="tpe.contact_id.name" />
+                            </td>
+                            <td>
+                                Téléphone :
+                            </td>
+                            <td>
+                                <t t-esc="tpe.contact_id.mobile or ''" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Adresse :
+                            </td>
+                            <td>
+                                <t t-esc="tpe.contact_id.street or ''" />
+                            </td>
+                            <td>
+                                Wilaya :
+                            </td>
+                            <td>
+                                <t t-esc="tpe.contact_id.city or ''" />
+                            </td>
+
+                        </tr>
+                        <tr>
+                            <td style="text-align: center;" colspan="4">
+                                <strong>Banque</strong>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Banque :
+                            </td>
+                            <td>
+                                <t t-esc="tpe.bank_id.name or ''" />
+                            </td>
+                            <td>
+                                Commande :
+                            </td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td style="text-align: center;" colspan="4">
+                                <strong>TPE</strong>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Marque :
+                            </td>
+                            <td>
+                                <t t-esc="tpe.constructor_id.name or ''" />
+                            </td>
+                            <td>
+                                Modèle :
+                            </td>
+                            <td>
+                                <t t-esc="tpe.model_id.name or ''" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                N° de Série :
+                            </td>
+                            <td>
+                                <t t-esc="tpe.serie_number or ''" />
+                            </td>
+                            <td>
+                                SIM :
+                            </td>
+                            <td>
+                                <t t-esc="tpe.operator or ''" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="text-align: center;" colspan="4">
+                                <strong>Installateur</strong>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Nom :
+                            </td>
+                            <td>BENAHMED DAHO Ali SARL TRANSFORMATEK</td>
+
+                            <td>
+                                Matricule :
+                            </td>
+                            <td>051200005</td>
+                        </tr>
+                    </table>
+
+
+                    <table border="1" style="width: 100%; border-collapse: collapse; margin-bottom: 15px; border: 3px solid black;">
+                        <tr>
+                            <td style="text-align: center;" colspan="4">
+                                <strong>Évènements</strong>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="border: none;">Formation ☐</td>
+                            <td style="border: none; padding-left: 100px; ">Manuel ☐</td>
+                            <td style="border: none; padding-left: 250px;">Consommable (Papier) ☐ <br /> QT :..................... </td>
+                            <td style="border: none;"></td>
+                        </tr>
+                    </table>
+
+                    <table border="1" style="width: 100%; border-collapse: collapse; margin-bottom: 15px; border: 3px solid black;">
+                        <tr>
+                            <td style="text-align: center; border: 3px solid black;" colspan="4">
+                                <strong>Installation</strong>
+                            </td>
+                        </tr>
+                        <tr style="height: 20px;" >
+                            <td style="border: none; border-left: 3px solid black; border-bottom: 3px solid black;">Date d'installation :</td>
+                            <td style="border: none; border-right: 3px solid black; border-bottom: 3px solid black;">............................................................</td>
+                        </tr>
+                        <tr style="height: 150px">
+                            <td style="border: none; border-left: 3px solid black; ; border-top: none;">Observation client :</td>
+                            <td style="border: none; border-right: 3px solid black;  border-top: none;">
+                                <t t-esc="tpe.observation or '............................................................'" />
+                            </td>
+                        </tr>
+                    </table>
+
+
+                    <table border="1" style="width: 100%; border-collapse: collapse; margin-bottom: 15px; border: 3px solid black;">
+                        <tr style=" border: 3px solid black;">
+                            <td style="text-align: center; " colspan="4">
+                                <strong>VISA</strong>
+                            </td>
+                        </tr>
+                        <tr style=" border: 3px solid black;">
+                            <td tyle="text-align: center; ">
+                                <b>Client</b>
+                            </td>
+                            <td tyle="text-align: center; ">
+                                <b>SSB</b>
+                            </td>
+                        </tr>
+                        <tr style=" border: 3px solid black;">
+                            <td style="height: 150px;"></td>
+                            <td style="height: 150px;"></td>
+
+
+                        </tr>
+                    </table>
+
+
+                </div>
+            </t>
+        </t>
+    </template>
+
+</odoo>

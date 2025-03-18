@@ -23,12 +23,13 @@
             </tree>
         </field>
     </record>
-
-    <menuitem id="menu_constructor" name="Constructeurs" parent="tpe_managment.menu_tpe" action="action_constructor"/>
-
-    <record id="action_constructor" model="ir.actions.act_window">
+      <record id="action_constructor" model="ir.actions.act_window">
         <field name="name">Constructeurs</field>
         <field name="res_model">tpe.constructor</field>
         <field name="view_mode">tree,form</field>
     </record>
+
+    <menuitem id="menu_constructor" name="Constructeurs" parent="tpe_managment.menu_tpe" action="action_constructor" sequence="40"/>
+
+  
 </odoo>

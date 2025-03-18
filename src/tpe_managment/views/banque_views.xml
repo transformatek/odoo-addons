@@ -37,6 +37,6 @@
             id="menu_tpe_banque"
             parent="tpe_managment.menu_tpe"
             action="action_banque"
-            sequence="100" />
+            sequence="20" />
 
 </odoo>

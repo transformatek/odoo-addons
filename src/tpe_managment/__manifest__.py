@@ -16,7 +16,6 @@
     # any module necessary for this one to work correctly
     "depends": [
         "base",
-       
     ],
     # always loaded
     "data": [
@@ -26,9 +25,12 @@
         'views/constructor_views.xml',
         'views/model_views.xml',
         'views/partner_views.xml',
+        'views/report.xml',
+        "views/report_tpe_template.xml",
         'views/tpe_views.xml',
         
     ],
+
     "license": "Other proprietary",
     "application": True,
     "installable": True,

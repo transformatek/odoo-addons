@@ -4,8 +4,9 @@
         <menuitem
             name="Tpe management"
             id="tpe_managment.tpe_management_root"
-           />
-     
+        />
+        <menuitem id="menu_tpe" name="Gestion TPE" parent="tpe_managment.tpe_management_root" />
+
 
     </data>
 </odoo>
