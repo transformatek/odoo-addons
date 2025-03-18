@@ -1,11 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <odoo>
+
+    <!-- TODO Redesign the form to make it similar to the report -->
+    <!-- TODO create notebook with pages observations, client observations,  -->
+
     <record id="view_tpe_form" model="ir.ui.view">
         <field name="name">tpe.form</field>
         <field name="model">tpe.tpe</field>
         <field name="arch" type="xml">
             <form string="TPE">
                 <sheet>
+                <!-- TODO Add status bar  -->
                     <group>
                         <group>
                             <field name="name" />
@@ -25,7 +30,6 @@
         </field>
     </record>
 
-
     <record id="view_tpe_tree" model="ir.ui.view">
         <field name="name">tpe.tree</field>
         <field name="model">tpe.tpe</field>
@@ -36,15 +40,19 @@
                 <field name="bank_id" />
                 <field name="operator" />
                 <field name="contact_id" />
+                <!-- TODO add state with Badges -->
             </tree>
         </field>
     </record>
+
+    <!-- TODO add filters by Wialya, model, bank, ...  -->
+    <!-- TODO add group by for Wialya, model, bank, ...  -->
 
     <record id="action_tpe" model="ir.actions.act_window">
         <field name="name">TPE</field>
         <field name="res_model">tpe.tpe</field>
         <field name="view_mode">tree,form</field>
     </record>
-    <menuitem id="menu_tpe_tpe" name="TPE" parent="tpe_managment.menu_tpe" action="action_tpe" sequence="1" />
+    <menuitem id="menu_tpe_tpe" name="Terminal" parent="tpe_managment.menu_tpe" action="action_tpe" sequence="1" />
 
 </odoo>

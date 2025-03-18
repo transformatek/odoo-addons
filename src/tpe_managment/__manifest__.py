@@ -6,8 +6,8 @@
         TPE MANAGEMENT
     """,
     "description": "TPE MANAGEMENT",
-    "author": "My Company",
-    "website": "http://www.yourcompany.com",
+    "author": "SARL Transformatek",
+    "website": "https://transformatek.dz",
     # Categories can be used to filter modules in modules listing
     # Check https://github.com/odoo/odoo/blob/master/odoo/addons/base/module/module_data.xml
     # for the full list
@@ -19,27 +19,24 @@
     ],
     # always loaded
     "data": [
-        'security/ir.model.access.csv',
-        'views/menus.xml',
-        'views/banque_views.xml',
-        'views/constructor_views.xml',
-        'views/model_views.xml',
-        'views/partner_views.xml',
-        'views/tpe_views.xml',
-        'report/installation_report.xml'
-        
+        "security/ir.model.access.csv",
+        "views/menus.xml",
+        "views/banque_views.xml",
+        "views/constructor_views.xml",
+        "views/model_views.xml",
+        "views/partner_views.xml",
+        "views/tpe_views.xml",
+        "report/installation_report.xml",
     ],
     "assets": {
-    "web.assets_backend": [
-        "tpe_managment/static/src/img/ssb.png",
-    ],
-    "web.assets_frontend": [
-        "tpe_managment/static/src/img/ssb.png",
-    ],
-},
-
-
-    "license": "Other proprietary",
+        "web.assets_backend": [
+            "tpe_managment/static/src/img/ssb.png",
+        ],
+        "web.assets_frontend": [
+            "tpe_managment/static/src/img/ssb.png",
+        ],
+    },
+    "license": "AGPL-3",
     "application": True,
     "installable": True,
     "auto_install": False,

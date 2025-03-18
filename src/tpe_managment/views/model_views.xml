@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <odoo>
+
+    <!-- TODO remove form -->
     <record id="view_tpe_model_form" model="ir.ui.view">
         <field name="name">tpe.model.form</field>
         <field name="model">tpe.model</field>
@@ -7,21 +9,22 @@
             <form string="Modèle TPE">
                 <sheet>
                     <group>
-                        <field name="name"/>
-                        <field name="constructor_id"/>
+                        <field name="name" />
+                        <field name="constructor_id" />
                     </group>
                 </sheet>
             </form>
         </field>
     </record>
 
+    <!-- TODO Edit inline -->
     <record id="view_tpe_model_tree" model="ir.ui.view">
         <field name="name">tpe.model.tree</field>
         <field name="model">tpe.model</field>
         <field name="arch" type="xml">
             <tree string="Modèles TPE">
-                <field name="name"/>
-                <field name="constructor_id"/>
+                <field name="name" />
+                <field name="constructor_id" />
             </tree>
         </field>
     </record>
@@ -31,6 +34,6 @@
         <field name="res_model">tpe.model</field>
         <field name="view_mode">tree,form</field>
     </record>
-    <menuitem id="menu_tpe_model" name="Model" parent="tpe_managment.menu_tpe" action="action_tpe_model" sequence="30"/>
+    <menuitem id="menu_tpe_model" name="Model" parent="tpe_managment.menu_tpe" action="action_tpe_model" sequence="30" />
 
 </odoo>

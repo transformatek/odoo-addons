@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <odoo>
+
+    <!-- TODO Remove form view -->
     <record id="view_constructor_form" model="ir.ui.view">
         <field name="name">constructor.form</field>
         <field name="model">tpe.constructor</field>
@@ -7,29 +9,31 @@
             <form string="Constructeur">
                 <sheet>
                     <group>
-                        <field name="name"/>
+                        <field name="name" />
                     </group>
                 </sheet>
             </form>
         </field>
     </record>
 
+    <!-- TODO Edit inline -->
     <record id="view_constructor_tree" model="ir.ui.view">
         <field name="name">constructor.tree</field>
         <field name="model">tpe.constructor</field>
         <field name="arch" type="xml">
             <tree string="Constructeurs">
-                <field name="name"/>
+                <field name="name" />
             </tree>
         </field>
     </record>
-      <record id="action_constructor" model="ir.actions.act_window">
+
+    <record id="action_constructor" model="ir.actions.act_window">
         <field name="name">Constructeurs</field>
         <field name="res_model">tpe.constructor</field>
         <field name="view_mode">tree,form</field>
     </record>
 
-    <menuitem id="menu_constructor" name="Constructeurs" parent="tpe_managment.menu_tpe" action="action_constructor" sequence="40"/>
+    <menuitem id="menu_constructor" name="Constructeurs" parent="tpe_managment.menu_tpe" action="action_constructor" sequence="40" />
 
-  
+
 </odoo>

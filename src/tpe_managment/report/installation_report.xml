@@ -6,22 +6,20 @@
         <field name="report_name">tpe_managment.report_tpe_installation</field>
         <field name="report_file">tpe_managment.report_tpe_installation</field>
         <field name="print_report_name">'Installation TPE - %s' % (object.name)</field>
-        <field name="binding_model_id" ref="model_tpe_tpe"/>
+        <field name="binding_model_id" ref="model_tpe_tpe" />
         <field name="binding_type">report</field>
     </record>
-     <template id="report_tpe_installation">
+    <template id="report_tpe_installation">
         <t t-call="web.html_container">
             <t t-foreach="docs" t-as="tpe">
                 <div class="page">
                     <table border="1" style="width: 100%; border-collapse: collapse; margin-bottom: 15px; border: 3px solid black; border-spacing: 0;">
                         <tr style="height: 75px;">
                             <td style="width: 30%; text-align: center; border: 3px solid black; vertical-align: middle;">
-                             
-                               <!-- <img t-att-src="'http://localhost:8069/tpe_managment/static/src/img/ssb.png'" style="width: 100px; height: auto;" /> -->
-                               
-                               <img t-att-src="'/tpe_managment/static/src/img/ssb.png'" style="width: 100px; height: auto;" />
 
+                                <!-- <img t-att-src="'http://localhost:8069/tpe_managment/static/src/img/ssb.png'" style="width: 100px; height: auto;" /> -->
 
+                                <img t-att-src="'/tpe_managment/static/src/img/ssb.png'" style="width: 100px; height: auto;" />
 
 
                             </td>
@@ -197,12 +195,6 @@
             </t>
         </t>
     </template>
-
-
-
-
-
-
 
 
 </odoo>

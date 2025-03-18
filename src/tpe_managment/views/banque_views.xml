@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <odoo>
+
+    <!-- TODO Remove form view -->
     <record id="view_banque_form" model="ir.ui.view">
         <field name="name">banque.form</field>
         <field name="model">tpe.banque</field>
@@ -7,21 +9,22 @@
             <form string="Banque">
                 <sheet>
                     <group>
-                        <field name="code"/>
-                        <field name="name"/>
+                        <field name="code" />
+                        <field name="name" />
                     </group>
                 </sheet>
             </form>
         </field>
     </record>
 
+    <!-- TODO Edit inline -->
     <record id="view_banque_tree" model="ir.ui.view">
         <field name="name">banque.tree</field>
         <field name="model">tpe.banque</field>
         <field name="arch" type="xml">
             <tree string="Banques">
-                <field name="code"/>
-                <field name="name"/>
+                <field name="code" />
+                <field name="name" />
             </tree>
         </field>
     </record>
@@ -30,13 +33,13 @@
         <field name="name">Banques</field>
         <field name="res_model">tpe.banque</field>
         <field name="view_mode">tree,form</field>
-    </record> 
+    </record>
 
-        <menuitem
-            name="Banque"
-            id="menu_tpe_banque"
-            parent="tpe_managment.menu_tpe"
-            action="action_banque"
-            sequence="20" />
+    <menuitem
+        name="Banque"
+        id="menu_tpe_banque"
+        parent="tpe_managment.menu_tpe"
+        action="action_banque"
+        sequence="20" />
 
 </odoo>

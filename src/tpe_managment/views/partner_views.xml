@@ -10,15 +10,11 @@
                 <field name="vat" position="before" />
                 <group>
                     <group>
-
                         <field name="trade_sign" placeholder="Enseigne ..." />
                     </group>
-
-
                 </group>
             </field>
         </record>
-
 
     </data>
 </odoo>
