@@ -25,11 +25,19 @@
         'views/constructor_views.xml',
         'views/model_views.xml',
         'views/partner_views.xml',
-        'views/report.xml',
-        "views/report_tpe_template.xml",
         'views/tpe_views.xml',
+        'report/installation_report.xml'
         
     ],
+    "assets": {
+    "web.assets_backend": [
+        "tpe_managment/static/src/img/ssb.png",
+    ],
+    "web.assets_frontend": [
+        "tpe_managment/static/src/img/ssb.png",
+    ],
+},
+
 
     "license": "Other proprietary",
     "application": True,

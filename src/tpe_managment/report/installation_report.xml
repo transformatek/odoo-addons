@@ -1,13 +1,29 @@
-<?xml version="1.0" encoding="UTF-8"?>
 <odoo>
-    <template id="report_tpe_installation">
+    <record id="action_report_tpe_installation" model="ir.actions.report">
+        <field name="name">Fiche d'installation TPE</field>
+        <field name="model">tpe.tpe</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">tpe_managment.report_tpe_installation</field>
+        <field name="report_file">tpe_managment.report_tpe_installation</field>
+        <field name="print_report_name">'Installation TPE - %s' % (object.name)</field>
+        <field name="binding_model_id" ref="model_tpe_tpe"/>
+        <field name="binding_type">report</field>
+    </record>
+     <template id="report_tpe_installation">
         <t t-call="web.html_container">
             <t t-foreach="docs" t-as="tpe">
                 <div class="page">
                     <table border="1" style="width: 100%; border-collapse: collapse; margin-bottom: 15px; border: 3px solid black; border-spacing: 0;">
                         <tr style="height: 75px;">
                             <td style="width: 30%; text-align: center; border: 3px solid black; vertical-align: middle;">
-                                <img alt="Ssb" t-att-src="'/tpe_managment/static/src/img/ssb.png'" style="width: 100px; height: auto;" />
+                             
+                               <!-- <img t-att-src="'http://localhost:8069/tpe_managment/static/src/img/ssb.png'" style="width: 100px; height: auto;" /> -->
+                               
+                               <img t-att-src="'/tpe_managment/static/src/img/ssb.png'" style="width: 100px; height: auto;" />
+
+
+
+
                             </td>
                             <td style="width: 40%; text-align: center; font-size: 18px; font-weight: bold; border: 3px solid black; vertical-align: middle;">
                                 <h3 style="margin: 0;">Fiche d'installation</h3>
@@ -181,5 +197,12 @@
             </t>
         </t>
     </template>
+
+
+
+
+
+
+
 
 </odoo>
