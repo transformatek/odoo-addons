@@ -144,7 +144,7 @@
                                 <strong>Installation</strong>
                             </td>
                         </tr>
-                        <tr style="height: 20px;" >
+                        <tr style="height: 20px;">
                             <td style="border: none; border-left: 3px solid black; border-bottom: 3px solid black;">Date d'installation :</td>
                             <td style="border: none; border-right: 3px solid black; border-bottom: 3px solid black;">............................................................</td>
                         </tr>
@@ -158,24 +158,22 @@
 
 
                     <table border="1" style="width: 100%; border-collapse: collapse; margin-bottom: 15px; border: 3px solid black;">
-                        <tr style=" border: 3px solid black;">
-                            <td style="text-align: center; " colspan="4">
+                        <tr style="border: 3px solid black;">
+                            <td style="text-align: center; border: 3px solid black;" colspan="2">
                                 <strong>VISA</strong>
                             </td>
                         </tr>
-                        <tr style=" border: 3px solid black;">
-                            <td tyle="text-align: center; ">
+                        <tr style="border: 3px solid black;">
+                            <td style="text-align: center; border: 3px solid black;">
                                 <b>Client</b>
                             </td>
-                            <td tyle="text-align: center; ">
+                            <td style="text-align: center; border: 3px solid black;">
                                 <b>SSB</b>
                             </td>
                         </tr>
-                        <tr style=" border: 3px solid black;">
-                            <td style="height: 150px;"></td>
-                            <td style="height: 150px;"></td>
-
-
+                        <tr style="border: 3px solid black;">
+                            <td style="height: 150px; border: 3px solid black;"></td>
+                            <td style="height: 150px; border: 3px solid black;"></td>
                         </tr>
                     </table>
 
