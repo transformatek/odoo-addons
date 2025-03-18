@@ -7,30 +7,35 @@
             <form string="TPE">
                 <sheet>
                     <group>
-                        <field name="name"/>
-                        <field name="serie_number"/>
-                        <field name="bank_id"/>
-                        <field name="operator"/>
-                        <field name="model_id"/>
-                        <field name="constructor_id" />
-                        <field name="contact_id"/>
-                        <field name="observation"/>
+                        <group>
+                            <field name="name" />
+                            <field name="serie_number" />
+                            <field name="bank_id" />
+                            <field name="operator" />
+                        </group>
+                        <group>
+                            <field name="model_id" />
+                            <field name="constructor_id" />
+                            <field name="contact_id" />
+                            <field name="observation" />
+                        </group>
                     </group>
                 </sheet>
             </form>
         </field>
     </record>
 
+
     <record id="view_tpe_tree" model="ir.ui.view">
         <field name="name">tpe.tree</field>
         <field name="model">tpe.tpe</field>
         <field name="arch" type="xml">
             <tree string="TPEs">
-                <field name="name"/>
-                <field name="serie_number"/>
-                <field name="bank_id"/>
-                <field name="operator"/>
-                <field name="contact_id"/>
+                <field name="name" />
+                <field name="serie_number" />
+                <field name="bank_id" />
+                <field name="operator" />
+                <field name="contact_id" />
             </tree>
         </field>
     </record>
@@ -40,6 +45,6 @@
         <field name="res_model">tpe.tpe</field>
         <field name="view_mode">tree,form</field>
     </record>
-    <menuitem id="menu_tpe_tpe" name="TPE" parent="tpe_managment.menu_tpe" action="action_tpe" sequence="1"/>
-    
+    <menuitem id="menu_tpe_tpe" name="TPE" parent="tpe_managment.menu_tpe" action="action_tpe" sequence="1" />
+
 </odoo>
