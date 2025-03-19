@@ -1,28 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <odoo>
 
-    <!-- TODO remove form -->
-    <record id="view_tpe_model_form" model="ir.ui.view">
-        <field name="name">tpe.model.form</field>
-        <field name="model">tpe.model</field>
-        <field name="arch" type="xml">
-            <form string="Modèle TPE">
-                <sheet>
-                    <group>
-                        <field name="name" />
-                        <field name="constructor_id" />
-                    </group>
-                </sheet>
-            </form>
-        </field>
-    </record>
-
-    <!-- TODO Edit inline -->
     <record id="view_tpe_model_tree" model="ir.ui.view">
         <field name="name">tpe.model.tree</field>
         <field name="model">tpe.model</field>
         <field name="arch" type="xml">
-            <tree string="Modèles TPE">
+            <tree string="Modèles TPE" editable="bottom">
                 <field name="name" />
                 <field name="constructor_id" />
             </tree>
