@@ -2,70 +2,67 @@
 <odoo>
 
 
-<record id="view_tpe_form" model="ir.ui.view">
-    <field name="name">tpe.form</field>
-    <field name="model">tpe.tpe</field>
-    <field name="arch" type="xml">
-        <form string="TPE">
-            <sheet>
-                <header>
-                    <field name="state" widget="statusbar" 
-                           statusbar_visible="new,planned,in_progress,done,blocked,cancelled" 
-                           clickable="1"/>
-                </header>
-                
-                <group>
-                    <separator string="Commerçant" colspan="2"/>
-                    <group>
-                        <field name="contact_id"/>
-                        <field name="mobile"/>
-                        <field name="street"/>
-                        <field name="city"/>
-                    </group>
-                </group>
-                
-                <group>
-                    <separator string="Banque" colspan="2"/>
-                    <group>
-                        <field name="bank_id"/>
-                        <!-- <field name="order"/> -->
-                    </group>
-                </group>
-                
-                <group>
-                    <separator string="TPE" colspan="2"/>
-                    <group>
-                        <field name="constructor_id"/>
-                        <field name="model_id"/>
-                        <field name="serie_number"/>
-                        <field name="operator"/>
-                    </group>
-                </group>
+    <record id="view_tpe_form" model="ir.ui.view">
+        <field name="name">tpe.form</field>
+        <field name="model">tpe.tpe</field>
+        <field name="arch" type="xml">
+            <form string="TPE">
+                <sheet>
+                    <header>
+                        <field name="state" widget="statusbar"
+                            statusbar_visible="new,planned,in_progress,done,blocked,cancelled"
+                            clickable="1" />
+                    </header>
 
-                  <group>
-                    <separator string="Installateur" colspan="2"/>
                     <group>
-                        <field name="wilaya_id"/>
-                        <field name="installation_date"/>
-                        
+                        <separator string="Commerçant" colspan="2" />
+                        <group>
+                            <field name="contact_id" />
+                            <field name="mobile" />
+                            <field name="street" />
+                            <field name="city" />
+                        </group>
                     </group>
-                </group>
+
+                    <group>
+                        <separator string="Banque" colspan="2" />
+                        <group>
+                            <field name="bank_id" />
+                            <!-- <field name="order"/> -->
+                        </group>
+                    </group>
+
+                    <group>
+                        <separator string="TPE" colspan="2" />
+                        <group>
+                            <field name="constructor_id" />
+                            <field name="model_id" />
+                            <field name="serie_number" />
+                            <field name="operator" />
+                        </group>
+                    </group>
+
+                    <group>
+                        <separator string="Installateur" colspan="2" />
+                        <group>
+                            <field name="wilaya_id" />
+                            <field name="installation_date" />
+
+                        </group>
+                    </group>
 
 
-                
-     
-                
-                <notebook>
-                    <page string="Observations">
-                        <field name="observation"/>
-                    </page>
-                    <page string="Observations client">
-                    </page>
-                </notebook>
-            </sheet>
-        </form>
-    </field>
-</record>
+                    <notebook>
+                        <page string="Observations">
+                            <field name="observation" />
+                        </page>
+                        <page string="Observations client">
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
 
     <record id="view_tpe_tree" model="ir.ui.view">
         <field name="name">tpe.tree</field>
@@ -77,7 +74,13 @@
                 <field name="bank_id" />
                 <field name="operator" />
                 <field name="contact_id" />
-                <!-- TODO add state with Badges -->
+                <field name="state" widget="badge"
+                    decoration-info="state == 'new'"
+                    decoration-primary="state == 'planned'"
+                    decoration-warning="state == 'in_progress'"
+                    decoration-success="state == 'done'"
+                    decoration-danger="state == 'blocked'"
+                    decoration-muted="state == 'cancelled'" />
             </tree>
         </field>
     </record>
