@@ -46,10 +46,7 @@ class TPE(models.Model):
     wilaya_id = fields.Many2one("res.country.state", string="Wilaya")
     
     installation_date = fields.Date(string="Date d'installation")
-
-    # TODO Add field order (commande) 
-    # order_id = fields.Many2one("sale.order", string="Commande")
-    # order = fields.Char(string="Commande")
+    order = fields.Char(string="Commande")
 
 
     
