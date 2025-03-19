@@ -28,7 +28,7 @@
                         <separator string="Banque" colspan="2" />
                         <group>
                             <field name="bank_id" />
-                            <field name="order"/>
+                            <field name="order" />
                         </group>
                     </group>
 
@@ -85,10 +85,8 @@
         </field>
     </record>
 
-    <!-- TODO add filters by Wialya, model, bank, ...  -->
-    <!-- TODO add group by for Wialya, model, bank, ...  -->
 
-    <!-- <record id="view_tpe_model_search" model="ir.ui.view">
+    <record id="view_tpe_model_search" model="ir.ui.view">
         <field name="name">tpe.search</field>
         <field name="model">tpe.tpe</field>
         <field name="arch" type="xml">
@@ -97,23 +95,23 @@
                 <field name="model_id" />
                 <field name="bank_id" />
                 <field name="state" />
-
-                <filter string="New" domain="[('state', '=', 'new')]" />
-                <filter string="Planned" domain="[('state', '=', 'planned')]" />
-                <filter string="In Progress" domain="[('state', '=', 'in_progress')]" />
-                <filter string="Done" domain="[('state', '=', 'done')]" />
-                <filter string="Blocked" domain="[('state', '=', 'blocked')]" />
-                <filter string="Cancelled" domain="[('state', '=', 'cancelled')]" />
+                <separator />
+                <filter string="New" name="New" domain="[('state', '=', 'new')]" help="" />
+                <filter string="Planned" name="planned" domain="[('state', '=', 'planned')]" help="" />
+                <filter string="In Progress" name="In Progress" domain="[('state', '=', 'in_progress')]" help="" />
+                <filter string="Done" name="Done"  domain="[('state', '=', 'done')]" />
+                <filter string="Blocked" name="Blocked"  domain="[('state', '=', 'blocked')]" />
+                <filter string="Cancelled" name="Cancelled"  domain="[('state', '=', 'cancelled')]" /> 
 
                 <group expand="0" string="Group By">
-                    <filter string="Wilaya" context="{'group_by': 'wilaya_id'}" />
-                    <filter string="Model" context="{'group_by': 'model_id'}" />
-                    <filter string="Bank" context="{'group_by': 'bank_id'}" />
+                    <filter string="Wilaya" name="Wilaya" context="{'group_by': 'wilaya_id'}" />
+                    <filter string="Model" name="Model"   context="{'group_by': 'model_id'}" />
+                    <filter string="Bank" name="Bank"  context="{'group_by': 'bank_id'}" />
                 </group>
             </search>
 
         </field>
-    </record> -->
+    </record>
 
     <record id="action_tpe" model="ir.actions.act_window">
         <field name="name">TPE</field>
