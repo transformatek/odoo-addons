@@ -22,16 +22,37 @@ class TPE(models.Model):
         store=True,
     )
     contact_id = fields.Many2one("res.partner", string="Contact")
+    mobile = fields.Char(related="contact_id.mobile", string="Mobile", store=True)
+    street = fields.Char(related="contact_id.street", string="Rue", store=True)
+    city = fields.Char(related="contact_id.city", string="Ville", store=True)
+
     model_id = fields.Many2one("tpe.model", string="Modèle")
     observation = fields.Text(string="Observation")
 
-    # TODO Add field state [new, planned, in_progress, done, blocked, cancelled]
+    state = fields.Selection(
+        [
+            ("new", "Nouveau"),
+            ("planned", "Planifié"),
+            ("in_progress", "En cours"),
+            ("done", "Terminé"),
+            ("blocked", "Bloqué"),
+            ("cancelled", "Annulé"),
+        ],
+        string="État",
+        default="new",
+        tracking=True
+    )
+    
+    wilaya_id = fields.Many2one("res.country.state", string="Wilaya")
+    
+    installation_date = fields.Date(string="Date d'installation")
 
-    # TODO Add field wilaya many2One
-    
-    # TODO Add field installation date 
-    
     # TODO Add field order (commande) 
+    # order_id = fields.Many2one("sale.order", string="Commande")
+    # order = fields.Char(string="Commande")
+
+
+    
 
     def action_print_tpe_report(self):
         """Action pour générer le rapport PDF"""
