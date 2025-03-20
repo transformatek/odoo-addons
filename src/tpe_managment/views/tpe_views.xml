@@ -64,6 +64,62 @@
         </field>
     </record>
 
+    <record id="view_tpe_kanban" model="ir.ui.view">
+        <field name="name">tpe.kanban</field>
+        <field name="model">tpe.tpe</field>
+        <field name="arch" type="xml">
+            <kanban class="o_kanban_view" default_group_by="state">
+                <field name="name" />
+                <field name="serie_number" />
+                <field name="bank_id" />
+                <field name="operator" />
+                <field name="contact_id" />
+                <field name="city" />
+                <field name="state" />
+                <templates>
+                    <t t-name="kanban-box">
+
+                        <div class="oe_kanban_header text-center"
+                        >
+                            <strong>
+                                <i class="fa fa-credit-card" style="color:#007bff;"></i>
+                                <t t-esc="record.name.value or 'Sans Nom'" />
+                            </strong>
+                        </div>
+
+                        <div class="oe_kanban_content ">
+                        
+                            <div class="text-primary">
+                                <i class="fa fa-barcode"></i>
+                                <span t-esc="record.serie_number.value or 'N/A'" />
+                            </div>
+                            <div>
+                                <strong><i class="fa fa-bank"></i> Banque :</strong>
+                                <t t-esc="record.bank_id.value or 'Non défini'" />
+                            </div>
+                            <div>
+                                <strong><i class="fa fa-wifi"></i> Opérateur :</strong>
+                                <t t-esc="record.operator.value or 'Non défini'" />
+                            </div>
+                        </div>
+
+                        <div class="oe_kanban_footer text-primary">
+                            <t t-if="record.contact_id.value">
+                                <i class="fa fa-user"></i>
+                                <t t-esc="record.contact_id.value" />
+                            </t>
+                            <t t-if="record.city.value"> | <i class="fa fa-map-marker"></i> 
+                                <t t-esc="record.city.value" />
+                            </t>
+                        </div>
+
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+
+
     <record id="view_tpe_tree" model="ir.ui.view">
         <field name="name">tpe.tree</field>
         <field name="model">tpe.tpe</field>
@@ -99,14 +155,14 @@
                 <filter string="New" name="New" domain="[('state', '=', 'new')]" help="" />
                 <filter string="Planned" name="planned" domain="[('state', '=', 'planned')]" help="" />
                 <filter string="In Progress" name="In Progress" domain="[('state', '=', 'in_progress')]" help="" />
-                <filter string="Done" name="Done"  domain="[('state', '=', 'done')]" />
-                <filter string="Blocked" name="Blocked"  domain="[('state', '=', 'blocked')]" />
-                <filter string="Cancelled" name="Cancelled"  domain="[('state', '=', 'cancelled')]" /> 
+                <filter string="Done" name="Done" domain="[('state', '=', 'done')]" />
+                <filter string="Blocked" name="Blocked" domain="[('state', '=', 'blocked')]" />
+                <filter string="Cancelled" name="Cancelled" domain="[('state', '=', 'cancelled')]" />
 
                 <group expand="0" string="Group By">
                     <filter string="Wilaya" name="Wilaya" context="{'group_by': 'wilaya_id'}" />
-                    <filter string="Model" name="Model"   context="{'group_by': 'model_id'}" />
-                    <filter string="Bank" name="Bank"  context="{'group_by': 'bank_id'}" />
+                    <filter string="Model" name="Model" context="{'group_by': 'model_id'}" />
+                    <filter string="Bank" name="Bank" context="{'group_by': 'bank_id'}" />
                 </group>
             </search>
 
@@ -116,7 +172,7 @@
     <record id="action_tpe" model="ir.actions.act_window">
         <field name="name">TPE</field>
         <field name="res_model">tpe.tpe</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">kanban,tree,form</field>
     </record>
     <menuitem id="menu_tpe_tpe" name="Terminal" parent="tpe_managment.menu_tpe" action="action_tpe" sequence="1" />
 
