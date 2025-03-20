@@ -9,3 +9,6 @@ class Model(models.Model):
 
     name = fields.Char(string="Nom", required=True)
     constructor_id = fields.Many2one("tpe.constructor", string="Constructeur")
+    model_image = fields.Binary(string="Modèle Image")  
+
+    

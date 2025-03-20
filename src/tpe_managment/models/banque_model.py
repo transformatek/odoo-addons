@@ -9,3 +9,4 @@ class Banque(models.Model):
 
     name = fields.Char(string="Nom")
     code = fields.Char(string="Code")
+    banque_image = fields.Binary(string="Banque Image")  
