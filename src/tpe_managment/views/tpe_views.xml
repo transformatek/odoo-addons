@@ -36,6 +36,7 @@
                     <group>
                         <separator string="TPE" colspan="2" />
                         <group>
+                            <field name="name" />
                             <field name="constructor_id" />
                             <field name="model_id" />
                             <field name="serie_number" />

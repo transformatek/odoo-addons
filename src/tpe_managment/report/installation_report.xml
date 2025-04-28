@@ -106,7 +106,7 @@
                             <td>
                                 Commande :
                             </td>
-                            <td></td>
+                            <td> <t t-esc="tpe.order or ''" /> </td>
                         </tr>
                         <tr>
                             <td style="text-align: center;" colspan="4">
