@@ -22,6 +22,11 @@ class TPE(models.Model):
         store=True,
     )
     contact_id = fields.Many2one("res.partner", string="Contact")
+    company_id = fields.Many2one(
+        "res.company",
+        string="Société",
+    )
+
     mobile = fields.Char(related="contact_id.mobile", string="Mobile", store=True)
     street = fields.Char(related="contact_id.street", string="Rue", store=True)
     city = fields.Char(related="contact_id.city", string="Ville", store=True)
@@ -40,16 +45,13 @@ class TPE(models.Model):
         ],
         string="État",
         default="new",
-        tracking=True
+        tracking=True,
     )
-    
+
     wilaya_id = fields.Many2one("res.country.state", string="Wilaya")
-    
+
     installation_date = fields.Date(string="Date d'installation")
     order = fields.Char(string="Commande")
-
-
-    
 
     def action_print_tpe_report(self):
         """Action pour générer le rapport PDF"""

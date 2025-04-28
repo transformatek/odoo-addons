@@ -19,6 +19,7 @@
     ],
     # always loaded
     "data": [
+        "security/security.xml",
         "security/ir.model.access.csv",
         "views/menus.xml",
         "views/banque_views.xml",

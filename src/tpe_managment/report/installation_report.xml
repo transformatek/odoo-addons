@@ -16,18 +16,15 @@
                     <table border="1" style="width: 100%; border-collapse: collapse; margin-bottom: 15px; border: 3px solid black; border-spacing: 0;">
                         <tr style="height: 75px;">
                             <td style="width: 30%; text-align: center; border: 3px solid black; vertical-align: middle;">
-
-                                <!-- <img t-att-src="'http://localhost:8069/tpe_managment/static/src/img/ssb.png'" style="width: 100px; height: auto;" /> -->
-
-                                <img t-att-src="'/tpe_managment/static/src/img/ssb.png'" style="width: 100px; height: auto;" />
-
-
+                                <t t-if="tpe.company_id.logo">
+                                    <img t-att-src="image_data_uri(tpe.company_id.logo)" style="max-height: 45px;" alt="Logo" />
+                                </t>
                             </td>
                             <td style="width: 40%; text-align: center; font-size: 18px; font-weight: bold; border: 3px solid black; vertical-align: middle;">
                                 <h3 style="margin: 0;">Fiche d'installation</h3>
                             </td>
                             <td style="width: 30%; text-align: left; border: 3px solid black; vertical-align: middle;">
-                                <p style="margin: 0; padding-left: 10px;">Réf : NTX / SSB / 2</p>
+                                <p style="margin: 0; padding-left: 10px;">Réf : … / SSB/ … </p>
                             </td>
                         </tr>
                     </table>
@@ -60,19 +57,45 @@
                             <td>
                                 <t t-esc="tpe.contact_id.street or ''" />
                             </td>
-                            <td>
-                                Wilaya :
+                            <td> Wilaya :
                             </td>
                             <td>
                                 <t t-esc="tpe.contact_id.city or ''" />
                             </td>
 
+
                         </tr>
+
+                        <tr style="border-bottom: 3px solid black;">
+                            <td style="border-left: 3px solid black;">
+                                Commune :
+                            </td>
+                            <td style="border: none;">
+                                <t t-esc="tpe.contact_id.street2 or ''" />
+                            </td>
+
+                            <td style="border: none;"></td> 
+                            <td style="border: none;"></td>
+
+                        </tr>
+
+
+                        <tr>
+                            <td style="text-align: center; border-left: 3px solid black; border-right: 3px solid black; border-bottom: 3px solid black;" colspan="4">
+                                <strong>Banque</strong>
+                            </td>
+                        </tr>
+
+                        <!-- <tr style="height: 50px;">
+                            <td style="border: none; border-left: 3px solid black; border-bottom: 3px solid black;">Wilaya :</td>
+                        <td>
+                            <t t-esc="tpe.contact_id.city or ''" />
+                        </td></tr>
                         <tr>
                             <td style="text-align: center;" colspan="4">
                                 <strong>Banque</strong>
                             </td>
-                        </tr>
+                        </tr> -->
                         <tr>
                             <td>
                                 Banque :
@@ -157,14 +180,19 @@
                                 <strong>Installation</strong>
                             </td>
                         </tr>
-                        <tr style="height: 20px;">
+                        <tr style="height: 50px;">
                             <td style="border: none; border-left: 3px solid black; border-bottom: 3px solid black;">Date d'installation :</td>
-                            <td style="border: none; border-right: 3px solid black; border-bottom: 3px solid black;">............................................................</td>
+                            <td style="border: none; border-right: 3px solid black; border-bottom: 3px solid black;">
+                                <div style="padding-left: 20px; line-height: 30px;">
+                                    ............................................................................ </div>
+                            </td>
                         </tr>
                         <tr style="height: 150px">
                             <td style="border: none; border-left: 3px solid black; ; border-top: none;">Observation client :</td>
+
                             <td style="border: none; border-right: 3px solid black;  border-top: none;">
-                                <t t-esc="tpe.observation or '............................................................'" />
+                                <!-- <t t-esc="tpe.observation or '............................................................'" /> -->
+                                <div style="padding-left: 20px; line-height: 30px;"> ............................................................................<br /> ............................................................................<br /> ............................................................................ </div>
                             </td>
                         </tr>
                     </table>

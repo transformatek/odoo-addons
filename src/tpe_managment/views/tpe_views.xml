@@ -21,6 +21,7 @@
                             <field name="mobile" />
                             <field name="street" />
                             <field name="city" />
+                            <field name="company_id" />
                         </group>
                     </group>
 
