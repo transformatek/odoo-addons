@@ -12,7 +12,7 @@ class TPE(models.Model):
     name = fields.Char(string="Nom")
     bank_id = fields.Many2one("tpe.banque", string="Banque")
     operator = fields.Selection(
-        [("mobilis", "Mobilis"), ("djezzy", "Djezzy"), ("ooredoo", "Ooredoo")],
+        [("MOBILIS", "MOBILIS"), ("DJEZZY", "DJEZZY"), ("OOREDOO", "OOREDOO")],
         string="Opérateur",
     )
     constructor_id = fields.Many2one(
