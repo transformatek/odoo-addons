@@ -81,38 +81,38 @@
                 <templates>
                     <t t-name="kanban-box">
 
-                        <div class="oe_kanban_header text-center"
-                        >
-                            <strong>
-                                <i class="fa fa-credit-card" style="color:#007bff;"></i>
-                                <t t-esc="record.name.value or 'Sans Nom'" />
-                            </strong>
-                        </div>
-
-                        <div class="oe_kanban_content ">
-                        
-                            <div class="text-primary">
-                                <i class="fa fa-barcode"></i>
-                                <span t-esc="record.serie_number.value or 'N/A'" />
+                        <div t-attf-class="oe_kanban_card oe_kanban_global_click" t-att-data-id="record.id">
+                            <div class="oe_kanban_header text-center">
+                                <strong>
+                                    <i class="fa fa-credit-card" style="color:#007bff;"></i>
+                                    <t t-esc="record.name.value or 'Sans Nom'" />
+                                </strong>
                             </div>
-                            <div>
-                                <strong><i class="fa fa-bank"></i> Banque :</strong>
-                                <t t-esc="record.bank_id.value or 'Non défini'" />
+                    
+                            <div class="oe_kanban_content">
+                                <div class="text-primary">
+                                    <i class="fa fa-barcode"></i>
+                                    <span t-esc="record.serie_number.value or 'N/A'" />
+                                </div>
+                                <div>
+                                    <strong><i class="fa fa-bank"></i> Banque :</strong>
+                                    <t t-esc="record.bank_id.value or 'Non défini'" />
+                                </div>
+                                <div>
+                                    <strong><i class="fa fa-wifi"></i> Opérateur :</strong>
+                                    <t t-esc="record.operator.value or 'Non défini'" />
+                                </div>
                             </div>
-                            <div>
-                                <strong><i class="fa fa-wifi"></i> Opérateur :</strong>
-                                <t t-esc="record.operator.value or 'Non défini'" />
+                    
+                            <div class="oe_kanban_footer text-primary">
+                                <t t-if="record.contact_id.value">
+                                    <i class="fa fa-user"></i>
+                                    <t t-esc="record.contact_id.value" />
+                                </t>
+                                <t t-if="record.city.value"> | <i class="fa fa-map-marker"></i> 
+                                    <t t-esc="record.city.value" />
+                                </t>
                             </div>
-                        </div>
-
-                        <div class="oe_kanban_footer text-primary">
-                            <t t-if="record.contact_id.value">
-                                <i class="fa fa-user"></i>
-                                <t t-esc="record.contact_id.value" />
-                            </t>
-                            <t t-if="record.city.value"> | <i class="fa fa-map-marker"></i> 
-                                <t t-esc="record.city.value" />
-                            </t>
                         </div>
 
                     </t>
