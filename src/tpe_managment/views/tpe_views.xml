@@ -17,7 +17,9 @@
                     <group>
                         <separator string="Commerçant" colspan="2" />
                         <group>
-                            <field name="contact_id" />
+                            <field name="name" />
+                            <field name="contact_name" />
+                            <field name="enseigne" />
                             <field name="mobile" />
                             <field name="street" />
                             <field name="city" />
@@ -28,7 +30,7 @@
                     <group>
                         <separator string="Banque" colspan="2" />
                         <group>
-                            <field name="bank_id" />
+                            <field name="bank_name" />
                             <field name="order" />
                         </group>
                     </group>
@@ -36,9 +38,8 @@
                     <group>
                         <separator string="TPE" colspan="2" />
                         <group>
-                            <field name="name" />
-                            <field name="constructor_id" />
-                            <field name="model_id" />
+                            <field name="constructor_name" />
+                            <field name="model_name" />
                             <field name="serie_number" />
                             <field name="operator" />
                         </group>
@@ -47,7 +48,7 @@
                     <group>
                         <separator string="Installateur" colspan="2" />
                         <group>
-                            <field name="wilaya_id" />
+                            <field name="wilaya_name" />
                             <field name="installation_date" />
 
                         </group>
@@ -73,9 +74,9 @@
             <kanban class="o_kanban_view" default_group_by="state">
                 <field name="name" />
                 <field name="serie_number" />
-                <field name="bank_id" />
+                <field name="bank_name" />
                 <field name="operator" />
-                <field name="contact_id" />
+                <field name="contact_name" />
                 <field name="city" />
                 <field name="state" />
                 <templates>
@@ -88,7 +89,7 @@
                                     <t t-esc="record.name.value or 'Sans Nom'" />
                                 </strong>
                             </div>
-                    
+
                             <div class="oe_kanban_content">
                                 <div class="text-primary">
                                     <i class="fa fa-barcode"></i>
@@ -96,18 +97,18 @@
                                 </div>
                                 <div>
                                     <strong><i class="fa fa-bank"></i> Banque :</strong>
-                                    <t t-esc="record.bank_id.value or 'Non défini'" />
+                                    <t t-esc="record.bank_name.value or 'Non défini'" />
                                 </div>
                                 <div>
                                     <strong><i class="fa fa-wifi"></i> Opérateur :</strong>
                                     <t t-esc="record.operator.value or 'Non défini'" />
                                 </div>
                             </div>
-                    
+
                             <div class="oe_kanban_footer text-primary">
-                                <t t-if="record.contact_id.value">
+                                <t t-if="record.contact_name.value">
                                     <i class="fa fa-user"></i>
-                                    <t t-esc="record.contact_id.value" />
+                                    <t t-esc="record.contact_name.value" />
                                 </t>
                                 <t t-if="record.city.value"> | <i class="fa fa-map-marker"></i> 
                                     <t t-esc="record.city.value" />
@@ -129,9 +130,11 @@
             <tree string="TPEs">
                 <field name="name" />
                 <field name="serie_number" />
-                <field name="bank_id" />
-                <field name="operator" />
-                <field name="contact_id" />
+                <field name="wilaya_name" />
+                <field name="city" />
+                <!-- <field name="bank_name" /> -->
+                <!-- <field name="operator" /> -->
+                <!-- <field name="contact_name" /> -->
                 <field name="state" widget="badge"
                     decoration-info="state == 'new'"
                     decoration-primary="state == 'planned'"
@@ -149,9 +152,9 @@
         <field name="model">tpe.tpe</field>
         <field name="arch" type="xml">
             <search string="TPE Search">
-                <field name="wilaya_id" />
-                <field name="model_id" />
-                <field name="bank_id" />
+                <field name="wilaya_name" />
+                <field name="model_name" />
+                <field name="bank_name" />
                 <field name="state" />
                 <separator />
                 <filter string="New" name="New" domain="[('state', '=', 'new')]" help="" />
@@ -162,9 +165,9 @@
                 <filter string="Cancelled" name="Cancelled" domain="[('state', '=', 'cancelled')]" />
 
                 <group expand="0" string="Group By">
-                    <filter string="Wilaya" name="Wilaya" context="{'group_by': 'wilaya_id'}" />
-                    <filter string="Model" name="Model" context="{'group_by': 'model_id'}" />
-                    <filter string="Bank" name="Bank" context="{'group_by': 'bank_id'}" />
+                    <filter string="Wilaya" name="Wilaya" context="{'group_by': 'wilaya_name'}" />
+                    <filter string="Model" name="Model" context="{'group_by': 'model_name'}" />
+                    <filter string="Bank" name="Bank" context="{'group_by': 'bank_name'}" />
                 </group>
             </search>
 
@@ -174,7 +177,7 @@
     <record id="action_tpe" model="ir.actions.act_window">
         <field name="name">TPE</field>
         <field name="res_model">tpe.tpe</field>
-        <field name="view_mode">kanban,tree,form</field>
+        <field name="view_mode">tree,kanban,form</field>
     </record>
     <menuitem id="menu_tpe_tpe" name="Terminal" parent="tpe_managment.menu_tpe" action="action_tpe" sequence="1" />
 

@@ -12,7 +12,7 @@
     <template id="report_tpe_installation">
         <t t-call="web.html_container">
             <t t-foreach="docs" t-as="tpe">
-                <div class="page">
+                <div class="page" style="page-break-before: always;">
                     <table border="1" style="width: 100%; border-collapse: collapse; margin-bottom: 15px; border: 3px solid black; border-spacing: 0;">
                         <tr style="height: 75px;">
                             <td style="width: 30%; text-align: center; border: 3px solid black; vertical-align: middle;">
@@ -41,29 +41,39 @@
                                 Nom :
                             </td>
                             <td>
-                                <t t-esc="tpe.contact_id.name" />
+                                <t t-esc="tpe.name" />
                             </td>
                             <td>
                                 Téléphone :
                             </td>
-                            <td>
-                                <t t-esc="tpe.contact_id.mobile or ''" />
+                            <td> 0<t t-esc="tpe.mobile or ''" />
                             </td>
                         </tr>
+                        <!-- <tr>
+                            <td>
+                                Nom contact:
+                            </td>
+                            <td>
+                                <t t-esc="tpe.contact_name" />
+                            </td>
+                            <td>
+                                Enseigne  :
+                            </td>
+                            <td> <t t-esc="tpe.enseigne or ''" />
+                            </td>
+                        </tr> -->
                         <tr>
                             <td>
                                 Adresse :
                             </td>
                             <td>
-                                <t t-esc="tpe.contact_id.street or ''" />
+                                <t t-esc="tpe.street or ''" />
                             </td>
                             <td> Wilaya :
                             </td>
                             <td>
-                                <t t-esc="tpe.contact_id.city or ''" />
+                                <t t-esc="tpe.wilaya_name or ''" />
                             </td>
-
-
                         </tr>
 
                         <tr style="border-bottom: 3px solid black;">
@@ -71,12 +81,10 @@
                                 Commune :
                             </td>
                             <td style="border: none;">
-                                <t t-esc="tpe.contact_id.street2 or ''" />
+                                <t t-esc="tpe.city or ''" />
                             </td>
-
-                            <td style="border: none;"></td> 
                             <td style="border: none;"></td>
-
+                            <td style="border: none;"></td>
                         </tr>
 
 
@@ -86,27 +94,19 @@
                             </td>
                         </tr>
 
-                        <!-- <tr style="height: 50px;">
-                            <td style="border: none; border-left: 3px solid black; border-bottom: 3px solid black;">Wilaya :</td>
-                        <td>
-                            <t t-esc="tpe.contact_id.city or ''" />
-                        </td></tr>
-                        <tr>
-                            <td style="text-align: center;" colspan="4">
-                                <strong>Banque</strong>
-                            </td>
-                        </tr> -->
                         <tr>
                             <td>
                                 Banque :
                             </td>
                             <td>
-                                <t t-esc="tpe.bank_id.name or ''" />
+                                <t t-esc="tpe.bank_name or ''" />
                             </td>
                             <td>
                                 Commande :
                             </td>
-                            <td> <t t-esc="tpe.order or ''" /> </td>
+                            <td>
+                                <t t-esc="tpe.order or ''" />
+                            </td>
                         </tr>
                         <tr>
                             <td style="text-align: center;" colspan="4">
@@ -118,13 +118,13 @@
                                 Marque :
                             </td>
                             <td>
-                                <t t-esc="tpe.constructor_id.name or ''" />
+                                <t t-esc="tpe.constructor_name or ''" />
                             </td>
                             <td>
                                 Modèle :
                             </td>
                             <td>
-                                <t t-esc="tpe.model_id.name or ''" />
+                                <t t-esc="tpe.model_name or ''" />
                             </td>
                         </tr>
                         <tr>
@@ -162,14 +162,15 @@
 
                     <table border="1" style="width: 100%; border-collapse: collapse; margin-bottom: 15px; border: 3px solid black;">
                         <tr>
-                            <td style="text-align: center;" colspan="4">
+                            <td style="text-align: center;" colspan="5">
                                 <strong>Évènements</strong>
                             </td>
                         </tr>
                         <tr>
                             <td style="border: none;">Formation ☐</td>
-                            <td style="border: none; padding-left: 100px; ">Manuel ☐</td>
-                            <td style="border: none; padding-left: 250px;">Consommable (Papier) ☐ <br /> QT :..................... </td>
+                            <td style="border: none;">Manuel ☐</td>
+                            <td style="border: none; ">Changement mot de passe ☐</td>
+                            <td style="border: none;">Consommable (Papier) ☐ <br /> QT :..................... </td>
                             <td style="border: none;"></td>
                         </tr>
                     </table>
@@ -192,7 +193,9 @@
 
                             <td style="border: none; border-right: 3px solid black;  border-top: none;">
                                 <!-- <t t-esc="tpe.observation or '............................................................'" /> -->
-                                <div style="padding-left: 20px; line-height: 30px;"> ............................................................................<br /> ............................................................................<br /> ............................................................................ </div>
+                                <div style="padding-left: 20px; line-height: 30px;"> ............................................................................<br />
+                                    ............................................................................<br />
+                                    ............................................................................ </div>
                             </td>
                         </tr>
                     </table>

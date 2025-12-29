@@ -10,28 +10,26 @@ class TPE(models.Model):
 
     serie_number = fields.Char(string="Numéro de série")
     name = fields.Char(string="Nom")
-    bank_id = fields.Many2one("tpe.banque", string="Banque")
+    bank_name = fields.Char(string="Banque")
+
     operator = fields.Selection(
         [("MOBILIS", "MOBILIS"), ("DJEZZY", "DJEZZY"), ("OOREDOO", "OOREDOO")],
         string="Opérateur",
     )
-    constructor_id = fields.Many2one(
-        "tpe.constructor",
-        string="Constructeur",
-        related="model_id.constructor_id",
-        store=True,
-    )
-    contact_id = fields.Many2one("res.partner", string="Contact")
+    constructor_name = fields.Char(string="Constructeur",default="ENIE")
+    # contact_id = fields.Many2one("res.partner", string="Contact")
     company_id = fields.Many2one(
         "res.company",
         string="Société",
     )
 
-    mobile = fields.Char(related="contact_id.mobile", string="Mobile", store=True)
-    street = fields.Char(related="contact_id.street", string="Rue", store=True)
-    city = fields.Char(related="contact_id.city", string="Ville", store=True)
+    contact_name = fields.Char(string="Nom contact")
+    enseigne = fields.Char(string="Enseigne")
+    mobile = fields.Char(string="Mobile")
+    street = fields.Char(string="Rue")
+    city = fields.Char(string="Ville")
 
-    model_id = fields.Many2one("tpe.model", string="Modèle")
+    model_name = fields.Char(string="Modèle")
     observation = fields.Text(string="Observation")
 
     state = fields.Selection(
@@ -48,7 +46,8 @@ class TPE(models.Model):
         tracking=True,
     )
 
-    wilaya_id = fields.Many2one("res.country.state", string="Wilaya")
+    wilaya_name = fields.Char(string="Wilaya")
+    # wilaya_id = fields.Many2one("res.country.state", string="Wilaya")
 
     installation_date = fields.Date(string="Date d'installation")
     order = fields.Char(string="Commande")
