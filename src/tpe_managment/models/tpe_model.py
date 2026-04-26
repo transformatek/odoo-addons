@@ -30,6 +30,7 @@ class TPE(models.Model):
     city = fields.Char(string="Ville")
 
     model_name = fields.Char(string="Modèle")
+    terminal_id = fields.Char(string="ID du terminal")
     observation = fields.Text(string="Observation")
 
     state = fields.Selection(

@@ -13,215 +13,217 @@
         <t t-call="web.html_container">
             <t t-foreach="docs" t-as="tpe">
                 <div class="page" style="page-break-before: always;">
-                    <table border="1" style="width: 100%; border-collapse: collapse; margin-bottom: 15px; border: 3px solid black; border-spacing: 0;">
+                    <table border="1" style="width: 100%; border-collapse: collapse; margin-bottom: 15px; border: 1px solid black; border-spacing: 0;">
                         <tr style="height: 75px;">
-                            <td style="width: 30%; text-align: center; border: 3px solid black; vertical-align: middle;">
+                            <td style="width: 25%; text-align: center; border: 3px solid black; vertical-align: middle;">
                                 <t t-if="tpe.company_id.logo">
                                     <img t-att-src="image_data_uri(tpe.company_id.logo)" style="max-height: 45px;" alt="Logo" />
                                 </t>
                             </td>
-                            <td style="width: 40%; text-align: center; font-size: 18px; font-weight: bold; border: 3px solid black; vertical-align: middle;">
-                                <h3 style="margin: 0;">Fiche d'installation</h3>
+                            <td style="width: 50%; text-align: center; font-size: 18px; font-weight: bold; border: 3px solid black; vertical-align: middle;">
+                                <h3 style="margin: 0;">FICHER D'INSTALLATION</h3>
                             </td>
-                            <td style="width: 30%; text-align: left; border: 3px solid black; vertical-align: middle;">
-                                <p style="margin: 0; padding-left: 10px;">Réf : … / SSB/ … </p>
+                            <td style="width: 25%; text-align: left; border: 3px solid black; vertical-align: middle;">
+                                <p style="margin: 0; padding-left: 10px;">Réf : <t t-esc="tpe.bank_name" />/SSB/ <t t-esc="tpe.id" />
+                                </p>
                             </td>
                         </tr>
                     </table>
 
 
-                    <table border="1" style="width: 100%; border-collapse: collapse; margin-bottom: 15px; border: 3px solid black;">
+                    <table border="1" style="width: 100%; border-collapse: collapse; margin-bottom: 15px; border: 1px solid black;">
                         <tr>
-                            <td style="text-align: center;" colspan="4">
-                                <strong>Commerçant</strong>
+                            <td colspan="4">
+                                <h3>Commerçant</h3>
                             </td>
                         </tr>
                         <tr>
-                            <td>
-                                Nom :
+                            <td style="width: 20%;">
+                                <strong>Nom :</strong>
                             </td>
-                            <td>
+                            <td style="width: 80%;">
                                 <t t-esc="tpe.name" />
                             </td>
-                            <td>
-                                Téléphone :
+                        </tr>
+                        <tr>
+                            <td style="width: 20%;">
+                                <strong>Enseigne :</strong>
                             </td>
-                            <td> 0<t t-esc="tpe.mobile or ''" />
+                            <td style="width: 80%;">
+                                <t t-esc="tpe.enseigne or ''" />
                             </td>
                         </tr>
-                        <!-- <tr>
-                            <td>
-                                Nom contact:
-                            </td>
-                            <td>
-                                <t t-esc="tpe.contact_name" />
-                            </td>
-                            <td>
-                                Enseigne  :
-                            </td>
-                            <td> <t t-esc="tpe.enseigne or ''" />
-                            </td>
-                        </tr> -->
                         <tr>
-                            <td>
-                                Adresse :
+                            <td style="width: 20%;">
+                                <strong>Téléphone :</strong>
                             </td>
-                            <td>
+                            <td style="width: 80%;">0<t t-esc="tpe.mobile or ''" /></td>
+                        </tr>
+                        <tr>
+                            <td style="width: 20%;">
+                                <strong>Adresse :</strong>
+                            </td>
+                            <td style="width: 80%;">
                                 <t t-esc="tpe.street or ''" />
                             </td>
-                            <td> Wilaya :
-                            </td>
-                            <td>
-                                <t t-esc="tpe.wilaya_name or ''" />
-                            </td>
                         </tr>
-
-                        <tr style="border-bottom: 3px solid black;">
-                            <td style="border-left: 3px solid black;">
-                                Commune :
+                        <tr>
+                            <td style="width: 20%;">
+                                <strong>Wilaya :</strong>
                             </td>
-                            <td style="border: none;">
+                            <td style="width: 40%;">
+                                <t t-esc="tpe.wilaya_name or ''" />
                                 <t t-esc="tpe.city or ''" />
                             </td>
-                            <td style="border: none;"></td>
-                            <td style="border: none;"></td>
                         </tr>
+                    </table>
 
-
+                    <table border="1" style="width: 100%; border-collapse: collapse; margin-bottom: 15px; border: 1px solid black;">
                         <tr>
-                            <td style="text-align: center; border-left: 3px solid black; border-right: 3px solid black; border-bottom: 3px solid black;" colspan="4">
-                                <strong>Banque</strong>
+                            <td colspan="4">
+                                <h3>Banque</h3>
                             </td>
                         </tr>
-
                         <tr>
-                            <td>
-                                Banque :
+                            <td style="width: 20%;">
+                                <strong>Banque :</strong>
                             </td>
-                            <td>
+                            <td style="width: 40%;">
                                 <t t-esc="tpe.bank_name or ''" />
                             </td>
-                            <td>
-                                Commande :
+                        </tr>
+                        <tr>
+                            <td style="width: 20%;">
+                                <strong>Commande :</strong>
                             </td>
-                            <td>
+                            <td style="width: 80%;">
                                 <t t-esc="tpe.order or ''" />
                             </td>
                         </tr>
+                    </table>
+
+                    <table border="1" style="width: 100%; border-collapse: collapse; margin-bottom: 15px; border: 1px solid black;">
                         <tr>
-                            <td style="text-align: center;" colspan="4">
-                                <strong>TPE</strong>
+                            <td colspan="4">
+                                <h3>Terminal de Paiement (TPE)</h3>
                             </td>
                         </tr>
                         <tr>
-                            <td>
-                                Marque :
+                            <td style="width: 20%;">
+                                <strong>Marque :</strong>
                             </td>
-                            <td>
+                            <td style="width: 80%;">
                                 <t t-esc="tpe.constructor_name or ''" />
                             </td>
-                            <td>
-                                Modèle :
+                        </tr>
+                        <tr>
+                            <td style="width: 20%;">
+                                <strong>Modèle :</strong>
                             </td>
-                            <td>
+                            <td style="width: 80%;">
                                 <t t-esc="tpe.model_name or ''" />
                             </td>
                         </tr>
                         <tr>
-                            <td>
-                                N° de Série :
+                            <td style="width: 20%;">
+                                <strong>N° de Série :</strong>
                             </td>
-                            <td>
+                            <td style="width: 80%;">
                                 <t t-esc="tpe.serie_number or ''" />
                             </td>
-                            <td>
-                                SIM :
+                        </tr>
+                        <tr>
+                            <td style="width: 20%;">
+                                <strong>SIM :</strong>
                             </td>
-                            <td>
+                            <td style="width: 80%;">
                                 <t t-esc="tpe.operator or ''" />
                             </td>
                         </tr>
                         <tr>
-                            <td style="text-align: center;" colspan="4">
-                                <strong>Installateur</strong>
+                            <td style="width: 20%;">
+                                <strong>ID du terminal :</strong>
+                            </td>
+                            <td style="width: 80%;">
+                                <t t-esc="tpe.terminal_id or ''" />
+                            </td>
+                        </tr>
+                    </table>
+
+                    <table border="1" style="width: 100%; border-collapse: collapse; margin-bottom: 15px; border: 1px solid black;">
+                        <tr>
+                            <td colspan="4">
+                                <h3>Installateur</h3>
                             </td>
                         </tr>
                         <tr>
                             <td>
-                                Nom :
+                                <strong>Nom :</strong>
                             </td>
                             <td>BENAHMED DAHO Ali SARL TRANSFORMATEK</td>
-
                             <td>
-                                Matricule :
+                                <strong>Matricule :</strong>
                             </td>
                             <td>051200005</td>
                         </tr>
                     </table>
 
 
-                    <table border="1" style="width: 100%; border-collapse: collapse; margin-bottom: 15px; border: 3px solid black;">
+                    <table border="1" style="width: 100%; border-collapse: collapse; margin-bottom: 15px; border: 1px solid black;">
                         <tr>
-                            <td style="text-align: center;" colspan="5">
-                                <strong>Évènements</strong>
+                            <td colspan="5">
+                                <h3>Historique de l'installation</h3>
                             </td>
                         </tr>
                         <tr>
-                            <td style="border: none;">Formation ☐</td>
-                            <td style="border: none;">Manuel ☐</td>
-                            <td style="border: none; ">Changement mot de passe ☐</td>
-                            <td style="border: none;">Consommable (Papier) ☐ <br /> QT :..................... </td>
-                            <td style="border: none;"></td>
+                            <td style="border: none;width:25%;">Formation ☐</td>
+                            <td style="border: none;width:25%;">Manuel ☐</td>
+                            <td style="border: none;width:25%;">Information sur l'obligation de changement mot de passe ☐</td>
+                            <td style="border: none;width:25%;">Consommable (Papier) ☐ <br /> QT :..................... </td>
                         </tr>
                     </table>
 
-                    <table border="1" style="width: 100%; border-collapse: collapse; margin-bottom: 15px; border: 3px solid black;">
+                    <table border="1" style="width: 100%; border-collapse: collapse; margin-bottom: 15px; border: 1px solid black;">
                         <tr>
-                            <td style="text-align: center; border: 3px solid black;" colspan="4">
-                                <strong>Installation</strong>
+                            <td colspan="4">
+                                <h3>Installation</h3>
                             </td>
                         </tr>
-                        <tr style="height: 50px;">
-                            <td style="border: none; border-left: 3px solid black; border-bottom: 3px solid black;">Date d'installation :</td>
-                            <td style="border: none; border-right: 3px solid black; border-bottom: 3px solid black;">
-                                <div style="padding-left: 20px; line-height: 30px;">
-                                    ............................................................................ </div>
-                            </td>
+                        <tr>
+                            <td><strong>Date d'installation :</strong> ...... / ...... / ...... </td>
                         </tr>
-                        <tr style="height: 150px">
-                            <td style="border: none; border-left: 3px solid black; ; border-top: none;">Observation client :</td>
-
-                            <td style="border: none; border-right: 3px solid black;  border-top: none;">
-                                <!-- <t t-esc="tpe.observation or '............................................................'" /> -->
-                                <div style="padding-left: 20px; line-height: 30px;"> ............................................................................<br />
-                                    ............................................................................<br />
-                                    ............................................................................ </div>
+                        <tr>
+                            <td>
+                                <strong>Observation client :</strong>
+                                <br />
+                                <br />
+                                <br />
+                                <br />
                             </td>
                         </tr>
                     </table>
 
 
-                    <table border="1" style="width: 100%; border-collapse: collapse; margin-bottom: 15px; border: 3px solid black;">
-                        <tr style="border: 3px solid black;">
-                            <td style="text-align: center; border: 3px solid black;" colspan="2">
-                                <strong>VISA</strong>
+                    <table border="1" style="width: 100%; border-collapse: collapse; margin-bottom: 15px; border: 1px solid black;">
+                        <tr>
+                            <td colspan="4">
+                                <h3>VISA</h3>
                             </td>
                         </tr>
-                        <tr style="border: 3px solid black;">
-                            <td style="text-align: center; border: 3px solid black;">
+                        <tr>
+                            <td>
                                 <b>Client</b>
                             </td>
-                            <td style="text-align: center; border: 3px solid black;">
+                            <td>
                                 <b>SSB</b>
                             </td>
                         </tr>
-                        <tr style="border: 3px solid black;">
-                            <td style="height: 150px; border: 3px solid black;"></td>
-                            <td style="height: 150px; border: 3px solid black;"></td>
+                        <tr>
+                            <td style="height: 150px;"></td>
+                            <td style="height: 150px;"></td>
                         </tr>
                     </table>
-
-
+                    <i>Le commerçant s'engage à procéder au changement du mot de passe du TPE</i>
                 </div>
             </t>
         </t>

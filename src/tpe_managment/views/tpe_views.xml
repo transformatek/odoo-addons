@@ -41,6 +41,7 @@
                             <field name="constructor_name" />
                             <field name="model_name" />
                             <field name="serie_number" />
+                            <field name="terminal_id" />
                             <field name="operator" />
                         </group>
                     </group>
@@ -74,6 +75,7 @@
             <kanban class="o_kanban_view" default_group_by="state">
                 <field name="name" />
                 <field name="serie_number" />
+                <field name="terminal_id" />
                 <field name="bank_name" />
                 <field name="operator" />
                 <field name="contact_name" />
