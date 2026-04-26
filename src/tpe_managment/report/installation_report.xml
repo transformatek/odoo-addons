@@ -21,7 +21,7 @@
                                 </t>
                             </td>
                             <td style="width: 50%; text-align: center; font-size: 18px; font-weight: bold; border: 3px solid black; vertical-align: middle;">
-                                <h3 style="margin: 0;">FICHER D'INSTALLATION</h3>
+                                <h3 style="margin: 0;">FICHE D'INSTALLATION</h3>
                             </td>
                             <td style="width: 25%; text-align: left; border: 3px solid black; vertical-align: middle;">
                                 <p style="margin: 0; padding-left: 10px;">Réf : <t t-esc="tpe.bank_name" />/SSB/ <t t-esc="tpe.id" />
